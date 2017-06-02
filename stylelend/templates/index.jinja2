@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="{{ url_for('static',filename="css/main.css") }}">
+    </head>
+    <body>
+
+<div class="wrapper main-table">
+    <div class="primary">
+      <table class="table table-striped">
+        <tbody>
+          {% for e in events %}
+          <tr>
+            <td><a href="/event/{{ e.stylelend }}">{{ e.team_primary }} vs {{ e.team_secondary }}</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div> <!-- /.primary -->
+  </div>   <!-- /.wrapper .main-table -->
+
+    </body>
+</html>
