@@ -1,12 +1,17 @@
 import datetime
 from stylelend.models import dbsession
 from sqlalchemy.orm import relationship
-from sqlalchemy import exists
+from sqlalchemy import Table, exists
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, DateTime, \
         String, ForeignKey, Boolean, Float
 
 Base = declarative_base()
+
+association_table = Table('rental_items', Base.metadata,
+    Column('item_id', Integer, ForeignKey('item.id')),
+    Column('rental_id', Integer, ForeignKey('rental.id'))
+)
 
 
 class Item(Base):
@@ -20,12 +25,8 @@ class Item(Base):
     brand             = Column(String)
     cost              = Column(Float)
     rent_per_week     = Column(Integer)
-    groupings         = Column(String)
-    user_id           = Column(Integer)
-    city              = Column(String)
-    state             = Column(String)
-    datetime          = Column(DateTime(timezone=True))
     location          = Column(String)
 
     def __repr__(self):
-       return "<Item(name='%s')>" % (self.title)
+       return "<Item(title='%s', brand='%s', type='%s')>" \
+               % (self.title, self.brand, self.item_type)
