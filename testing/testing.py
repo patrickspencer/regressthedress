@@ -6,6 +6,9 @@ from stylelend.models.items import Item
 from stylelend.models.rentalitems import RentalItem
 from stylelend.models.rentals import Rental
 import matplotlib.pyplot as plt
+from fuzzywuzzy import fuzz
+from fuzzywuzzy import process
+import requests
 
 # items = dbsession.query(Item) \
 #               .filter(RentalItem.id == event_id).first()
@@ -24,15 +27,18 @@ def get_brands():
 def find_by_type_and_brand(item_type, brand):
     item_type = item_type.replace("'", "''")
     brand = brand.replace("'", "''")
-    columns = """item_price, brand, item_type, cost, I.sku,
-    rent_per_week, I.created_at, I.title, I.description, 
-    year_purchased, rent_per_week,
-    rental_date, return_date"""
 
-    query = "SELECT {} FROM rental_items RI \
-    INNER JOIN items I ON I.id = RI.item_id \
+    query = "SELECT I.id, I.brand, I.item_type, I.cost, I.sku, \
+    I.rent_per_week, I.created_at, I.title, I.description, \
+    I.year_purchased, I.rent_per_week, \
+    R.rental_date, R.return_date, \
+    RI.item_price, RI.refunded, RI.fit_return, \
+    RI.created_at, \
+    RI.updated_at \
+    FROM items I \
+    LEFT JOIN rental_items RI ON I.id = RI.item_id \
     LEFT JOIN rentals R ON R.id = RI.rental_id \
-    WHERE item_type = '{}' AND brand='{}';".format(columns, item_type, brand)
+    WHERE item_type='{}' and brand='{}';".format(item_type, brand)
     return engine.execute(query).fetchall()
 
 # items = dbsession.query(Item).filter(Item.id == RentalItem.rental_id).all()
@@ -74,6 +80,9 @@ def find_word(search, text):
         return False
 
 def find_brand(input_string):
+    """
+    Look through each brand in the database and try to find it in the input_text
+    """
     l = []
     for brand in brands:
         b = re.escape(brand)
@@ -82,6 +91,9 @@ def find_brand(input_string):
         return l
 
 def find_item_type(input_string):
+    """
+    Look through each item_type in the database and try to find it in the input_text
+    """
     l = []
     for item in item_types:
         i = re.escape(item)
@@ -89,19 +101,35 @@ def find_item_type(input_string):
             l.append(find_word(i, input_text))
         return l
 
-print(find_brand(input_text))
-print(find_item_type(input_text))
-
-print(item_types)
-
-# m = re.search('(?<=abc)def', 'abcdef')
-# print(m.group(0))
-
-# plt.scatter()
-
 # item_type = item_type.replace("'", "''")
 # brand = brand.replace("'", "''")
 
-# print(brands)
-# print(find_by_type_and_brand("dresses", "Versace"))
-# find_by_type_and_brand("dresses", "Versace")
+input_text = "Gown with Long Sleeves and Deep V"
+choices = find_by_type_and_brand('dresses', 'Jill Jill Stuart')
+items = dbsession.query(Item).filter(Item.item_type == 'dresses').all()
+
+d = {}
+for item in items[0:10]:
+    token = fuzz.token_sort_ratio(input_text, item.title)
+    if len(d) <= 5:
+        d[item.id] = token
+    if min(d.values()) < token:
+        d[item.id] = token
+        d.pop(min(d, key=d.get), None)
+
+l = []
+while len(d) > 0:
+    l.append((max(d, key=d.get), max(d.values())))
+    d.pop(max(d, key=d.get))
+
+for i in l:
+    print(dbsession.query(Item).filter(Item.id == i[0]).first())
+# d = {1: 2, 3: 6, 5: 10}
+# print(len(d))
+# print(min(d, key=d.get))
+# print(min(d.values()))
+# if 5 in l:
+#     print("yes")
+# print(len(items))
+
+r = requests.get()
