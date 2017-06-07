@@ -4,11 +4,10 @@ from flask import Blueprint, render_template, request
 
 main = Blueprint('main', __name__, url_prefix='/')
 
-
 @main.route("/")
 def index():
     form = DescriptionForm(request.form)
-    return render_template('index.jinja2', text=text, form=form)
+    return render_template('index.jinja2', form=form)
 
 @main.route('finditem', methods=['GET', 'POST'])
 def finditem():
