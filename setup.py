@@ -12,7 +12,7 @@ setup(
     long_description = readme,
     author = "Patrick Spencer",
     author_email = "pkspenc@gmail.com",
-    url = "http://bitbucket.org/patrickspencer/wombat/",
+    url = "http://bitbucket.org/patrickspencer/stylelend_wombat/",
     py_modules = ['wombat'],
     classifiers = [
         'Development Status :: 3 - Alpha',

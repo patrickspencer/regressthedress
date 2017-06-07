@@ -1,7 +1,7 @@
 import datetime
 from wombat.models import dbsession
-from sqlalchemy.orm import relationship
 from sqlalchemy import Table, exists
+from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, DateTime, \
         String, ForeignKey, Boolean, Float
