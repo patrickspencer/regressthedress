@@ -16,15 +16,14 @@ $small-screen:  new-breakpoint(max-width  768px  6);
 .form-horizontal {
     @include outer-container;
     .col-2 {
-        @include span-columns(2);
+	@include span-columns(2);
     }
 
     .col-10 {
-        @include span-columns(10);
-        @include omega();
+	@include span-columns(10);
+	@include omega();
     }
     .offset-2 {
-        @include shift(2);
+	@include shift(2);
     }
 }
-

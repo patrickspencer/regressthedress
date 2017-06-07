@@ -14,14 +14,9 @@
     "tests"
   ],
   "dependencies": {
-    "pikaday": "~1.4",
-    "moment": "~2.11.1",
-    "angular": "~1.4.8",
-    "angular-route": "1.4.x",
     "bootstrap-sass": "~3.3.6",
     "bourbon": "~4.2.3",
     "neat": "~1.7.2",
     "normalize.css": "~3.0.3",
-    "d3": "~3.5"
   }
 }
