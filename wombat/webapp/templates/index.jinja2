@@ -1,21 +1,9 @@
-<!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>{% block title %}{% endblock %}</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "base.jinja2" %}
 
-        <link rel="stylesheet" href="{{ url_for('assets', filename="css/main.css") }}">
-    </head>
-    <body>
-
-<div class="wrapper main-table">
-    <div class="primary">
-          {{ text }}
-    </div> <!-- /.primary -->
-  </div>   <!-- /.wrapper .main-table -->
-
-    </body>
-</html>
+{% block content %}
+    <form method="POST" action="{{ url_for('main.finditem') }}">
+	{{ form.description.label }}
+	{{ form.description }}
+	{{ form.submit }}
+    </form>
+{% endblock %}
