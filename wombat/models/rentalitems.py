@@ -1,7 +1,7 @@
 import datetime
-from stylelend.models import dbsession
-from stylelend.models.items import Item
-from stylelend.models.rentals import Rental
+from wombat.models import dbsession
+from wombat.models.items import Item
+from wombat.models.rentals import Rental
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, DateTime, \
         String, ForeignKey, Float

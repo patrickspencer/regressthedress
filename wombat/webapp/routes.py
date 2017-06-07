@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from stylelend.models import dbsession
+from wombat.models import dbsession
 main = Blueprint('main', __name__, url_prefix='/')
 
 text = """Lorem ipsum dolor sit amet, fabellas assueverit et has, vim ei timeam dolores percipitur. Quo dicit maiestatis an, duo quaestio quaerendum ad, no nihil tibique tractatos cum. Ea dolorum facilis temporibus mel, ea qui virtute scripserit. Omnis mandamus interesset ei cum, augue eripuit quo an, quod elit inani ius ea. Quo ex semper feugait, eu prompta sanctus duo, cu vis eius consequat suscipiantur.

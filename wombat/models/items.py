@@ -1,5 +1,5 @@
 import datetime
-from stylelend.models import dbsession
+from wombat.models import dbsession
 from sqlalchemy.orm import relationship
 from sqlalchemy import Table, exists
 from sqlalchemy.ext.declarative import declarative_base

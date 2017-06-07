@@ -1,10 +1,7 @@
-import datetime
-from stylelend.models import dbsession
+from wombat.models import dbsession
 from sqlalchemy.orm import relationship
-from sqlalchemy import exists
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, DateTime, \
-        String, ForeignKey, Boolean, Float
+from sqlalchemy import Column, Integer, DateTime, Float
 
 Base = declarative_base()
 
