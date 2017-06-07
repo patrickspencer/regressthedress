@@ -6,13 +6,13 @@ from setuptools import setup
 readme = open('README.md').read()
 
 setup(
-    name = 'stylelend',
+    name = 'wombat',
     version = '0.2',
     description = "A webapp for stylelend renting price suggestion",
     long_description = readme,
     author = "Patrick Spencer",
     author_email = "pkspenc@gmail.com",
-    url = "http://bitbucket.org/patrickspencer/stylelend/",
+    url = "http://bitbucket.org/patrickspencer/wombat/",
     py_modules = ['wombat'],
     classifiers = [
         'Development Status :: 3 - Alpha',
