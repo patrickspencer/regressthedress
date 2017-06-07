@@ -10,3 +10,4 @@ pandas
 matplotlib
 fuzzywuzzy
 python-Levenshtein # for fuzzywuzzy
+WTForms == 2.1
