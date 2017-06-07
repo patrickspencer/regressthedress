@@ -1,5 +1,5 @@
 from flask import Flask
-from wombat.webapp.routes import main
+from wombat.webapp.views import main
 
 def create_app():
     """
