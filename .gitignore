@@ -130,3 +130,6 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# ansible
+# *.retry
