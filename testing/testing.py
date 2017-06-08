@@ -1,14 +1,12 @@
 import re
 import pandas as pd
-from sqlalchemy import exists
-from stylelend.models import dbsession, engine
-from stylelend.models.items import Item
-from stylelend.models.rentalitems import RentalItem
-from stylelend.models.rentals import Rental
-import matplotlib.pyplot as plt
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
-import requests
+from sqlalchemy import exists
+import matplotlib.pyplot as plt
+from wombat.models import dbsession, engine
+from wombat.models import Item, RentalItem
+from wombat.models import RentalItem, Rental
 
 # items = dbsession.query(Item) \
 #               .filter(RentalItem.id == event_id).first()
@@ -122,8 +120,8 @@ while len(d) > 0:
     l.append((max(d, key=d.get), max(d.values())))
     d.pop(max(d, key=d.get))
 
-for i in l:
-    print(dbsession.query(Item).filter(Item.id == i[0]).first())
+# for i in l:
+#     print(dbsession.query(Item).filter(Item.id == i[0]).first())
 # d = {1: 2, 3: 6, 5: 10}
 # print(len(d))
 # print(min(d, key=d.get))
@@ -132,4 +130,6 @@ for i in l:
 #     print("yes")
 # print(len(items))
 
-r = requests.get()
+item = dbsession.query(Item).filter(Item.id == 2564).first()
+print(item.rental)
+# print(items[0].rental.item_price)
