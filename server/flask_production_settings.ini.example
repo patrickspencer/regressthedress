@@ -1,0 +1,12 @@
+[secrets]
+SECRET_KEY =
+
+[database]
+DATABASE_NAME = my_db
+DATABASE_USER = bob
+DATABASE_PASSWORD = password
+DATABASE_HOST = localhost
+DATABASE_PORT = 5432
+
+[general]
+DEBUG = False

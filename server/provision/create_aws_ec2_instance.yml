@@ -1,0 +1,31 @@
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  vars:
+      keypair: "insight_server_key_pks"
+      instance_type: "t2.micro"
+      # standard ubuntu 16.04 lts
+      image: "ami-f4cc1de2"
+      group: "simple-group-1"
+      region: "us-east-1"
+      instance_tag: "test"
+  tasks:
+    - name: make one instance
+      ec2:
+        image: "{{ image }}"
+        instance_type: "{{ instance_type }}"
+        keypair: "{{ keypair }}"
+        instance_tags:
+            Name: "{{ instance_tag }}"
+        region: "{{ region }}"
+        group: "{{ group }}"
+        wait: true
+      register: ec2_info
+
+    - name: Add all instance public IPs to host group
+      add_host: hostname={{ item.public_ip }} groups=ec2hosts
+      with_items: "{{ ec2_info.instances }}"
+
+    # - name: Wait for SSH to come up
+    #   wait_for: host={{ item.public_dns_name }} port=22 delay=60 timeout=320 state=started
+    #   with_items: ec2_info.instances

@@ -1,0 +1,11 @@
+/*
+ * run the following command:
+ * sudo -u postgres psql -U postgres -d stylelend -a -f provision.sql
+ */
+CREATE DATABASE stylelend;
+CREATE USER patrick WITH PASSWORD 'TeddyBoxingKangaroo1901';
+ALTER ROLE patrick SET client_encoding TO 'utf8';
+ALTER ROLE patrick SET default_transaction_isolation TO 'read committed';
+ALTER ROLE patrick SET timezone TO 'UTC';
+ALTER ROLE "patrick" WITH LOGIN;
+GRANT ALL PRIVILEGES ON DATABASE stylelend TO patrick;

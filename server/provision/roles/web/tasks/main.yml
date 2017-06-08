@@ -1,0 +1,33 @@
+---
+
+- name: Install system packages
+  apt: pkg={{ item }} update-cache=yes
+  with_items: "{{ system_packages }}"
+
+- name: Clone git repo
+  git: repo="{{ git_repo }}"
+       dest="{{ application_path }}"
+       accept_hostkey=yes
+       version="{{ git_branch }}"
+       depth=1
+
+- include: create_users_and_groups.yml
+  tags: users_and_groups
+
+- include: setup_virtualenv.yml
+  tags: virtualenv
+
+- include: set_file_permissions.yml
+  tags: permissions
+
+- include: setup_django.yml
+  tags: django
+
+- include: setup_gunicorn.yml
+  tags: gunicorn
+
+- include: setup_nginx.yml
+  tags: nginx
+
+- include: setup_supervisor.yml
+  tags: supervisor

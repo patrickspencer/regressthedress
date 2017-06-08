@@ -1,0 +1,30 @@
+---
+
+- name: Create the Supervisor config file
+  template: src=supervisor_config.j2
+            dest=/etc/supervisor/conf.d/{{ project_name }}.conf
+            backup=yes
+
+- name: Create okapi log directory
+  file: path="{{ log_dir }}"
+        state=directory
+        mode=0755
+
+- name: Delete Supervisor sock file
+  file: path=/var/run/supervisor.sock
+        state=absent
+
+- name: Start Supervisor
+  become: true
+  become_method: sudo
+  # service:
+  #   name: supervisor
+  #   state: started
+  command: supervisord -c /etc/supervisor/supervisord.conf
+
+- name: Re-read the Supervisor config files
+  supervisorctl: name={{ project_name }} state=present
+
+# - name: Restart Supervisor
+#   become_user: ubuntu
+#   supervisorctl: name={{ project_name }} state=restarted

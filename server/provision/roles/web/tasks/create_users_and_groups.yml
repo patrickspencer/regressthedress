@@ -1,0 +1,10 @@
+---
+
+- name: Create the project user
+  user: name={{ gunicorn_user }} state=present
+
+- name: Create the project group
+  group: name={{ gunicorn_group }} system=yes state=present
+
+- name: Add the project user to the project group
+  user: name={{ gunicorn_user }} group={{ gunicorn_group }} state=present

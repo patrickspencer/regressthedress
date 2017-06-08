@@ -1,0 +1,6 @@
+---
+
+- name: Create the Gunicorn start file
+  template: src=gunicorn_start.j2
+            dest="{{ project_path }}/gunicorn_start.sh"
+            backup=yes
