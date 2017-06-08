@@ -3,9 +3,14 @@
 {% block content %}
     <form method="POST" action="{{ url_for('main.finditem') }}" class="form-inline">
        <div class="form-group">
-	{{ form.description.label }}
+	{{ form.description.label }}: 
 	{{ form.description(class_='form-control') }}
 	{{ form.submit(class_="btn btn") }}
       </div>
     </form>
+    <br/>
+    Example searches:
+    <ul>
+    <li>Gown with Long Sleeves and Deep V</li>
+    </ul>
 {% endblock %}
