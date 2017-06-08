@@ -15,6 +15,6 @@ jellyfish == 0.5.6
 scrapy
 
 # server
-boto == 1.4.4
+boto
 click == 6.7
 fabric == 1.13.1
