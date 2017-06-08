@@ -12,3 +12,4 @@ fuzzywuzzy
 python-Levenshtein # for fuzzywuzzy
 WTForms == 2.1
 jellyfish == 0.5.6
+scrapy
