@@ -7,7 +7,14 @@
 <br />
 <br />
 
-You searched for "{{ request.form['description'] }}"
+You searched for "{{ request.form['description'] }}" <br />
+brand "{{ request.form['brand'] }}" <br />
+item type "{{ request.form['item_type'] }}" <br />
+
+<br>
+<br>
+
+You're query "{{ query }}" <br />
 
 <br>
 <br>
@@ -19,21 +26,7 @@ List of costs:
 <br>
 <br>
 
-List of costs within one std dev of the mean: 
-<br>
-{{ tight_costs }}
-
-<br>
-<br>
-
-Average of new list of numbers:
-<br>
-{{ tight_costs_avg }}
-
-<br>
-<br>
-
-10% of average of new list of numbers (and our final predicted renting price):
+10% of average of median of top similar costs (and our final predicted renting price):
 <br>
 {{ price_suggestion }}
 
@@ -46,11 +39,12 @@ Top 10 similar items in the database
 <br>
 
 {{ result }}
-<table class="table table-bordered">
+<table class="table table-bordered table-condensed">
 {% for item in similar_items %}
 <tr>
 <td class="success">{{ item.brand }}</td>
 <td class="active">{{ item.title }}</td>
+<td class="active">{{ item.description }}</td>
 <td class="warning">${{ item.cost }}</td>
 </tr>
 {% endfor %}

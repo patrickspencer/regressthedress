@@ -3,14 +3,22 @@
 {% block content %}
     <form method="POST" action="{{ url_for('main.finditem') }}" class="form-inline">
        <div class="form-group">
-	{{ form.description.label }}: 
-	{{ form.description(class_='form-control') }}
-	{{ form.submit(class_="btn btn") }}
+        {{ form.description.label }}: <br />
+        {{ form.description(class_='form-control') }} <br />
+        {{ form.item_type.label }}:
+        {{ form.item_type(class_='form-control') }}
+	<span style="width: 100px;"></span>
+        {{ form.brand.label }}: 
+        {{ form.brand(class_='form-control') }} <br />
+        {{ form.submit(class_="btn btn") }} <br />
       </div>
     </form>
     <br/>
     Example searches:
     <ul>
-    <li>Gown with Long Sleeves and Deep V</li>
+    <li><a href="#" class="pre-descr">Gown with Long Sleeves and Deep V</a></li>
+    <li><a href="#" class="pre-descr">Micah Floral Silk Wrap Dress</a></li>
+    <li><a href="#" class="pre-descr">Adrianna Papell Print Satin Chiffon Handkerchief Dress</a></li>
+    <li><a href="#" class="pre-descr">Loveappella V-Neck Jersey Maxi Dress (Regular & Petite)</a></li>
     </ul>
 {% endblock %}
