@@ -14,11 +14,14 @@ def index():
 @main.route('finditem', methods=['GET', 'POST'])
 def finditem():
     descr = request.form['description']
-    similar_items = engine.main.get_top_n_similar_items(descr, request.form['brand'], request.form['item_type'], method="l")
+    items = engine.main.get_top_n_similar_items(descr, request.form['brand'], request.form['item_type'], algorithm="l")
+    similar_items = items[0]
     costs = [item.cost for item in similar_items]
     price_suggestion = np.median(np.array(costs)) / 10
     return render_template('results.jinja2', 
             similar_items = similar_items,
             costs = costs,
-            price_suggestion = price_suggestion
+            price_suggestion = price_suggestion,
+            domain = items[1],
+            all_prices = items[2] 
             )
