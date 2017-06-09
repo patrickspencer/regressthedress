@@ -1352,7 +1352,7 @@ address {
   line-height: 1.42857; }
 
 .wrapper {
-  max-width: 700px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto; }
   .wrapper:before, .wrapper:after {
@@ -1397,3 +1397,6 @@ address {
       margin-right: 0; }
   .form-horizontal .offset-2 {
     margin-left: 17.05961%; }
+
+#description {
+  width: 600px; }
