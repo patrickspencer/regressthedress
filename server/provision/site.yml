@@ -1,8 +1,8 @@
 ---
-- name: "Provision a {{ application_name }} site"
-  hosts: tag_Name_test
+- name: "Provision a {{ project_name }} site"
+  hosts: tag_Name_insight_project
   gather_facts: False
-  remote_user: "{{ server_user }}"
+  remote_user: "{{ project_server_owner }}"
   become: true
   vars_files:
   - vars/base.yml
@@ -15,5 +15,3 @@
   roles:
   - db
   - web
-
-

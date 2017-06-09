@@ -1,7 +1,8 @@
 ---
-project_name: wombat
-server_user: ubuntu
-git_repo: https://bitbucket.org/patrickspencer/stylelend_wombat
+project_name: "wombat"
+project_server_owner: "ubuntu"
+project_server_group: "webapp"
+git_repo: "https://bitbucket.org/patrickspencer/stylelend_wombat"
 system_packages:
   - git
   - nginx
@@ -34,8 +35,8 @@ supervisor_log_file: "{{ log_dir }}/gunicorn_supervisor.log"
 requirements_file: "{{ project_path }}/requirements.txt"
 
 # Gunicorn settings.
-gunicorn_user: "ubuntu"
-gunicorn_group: webapps
+gunicorn_user: "{{ project_server_owner }}"
+gunicorn_group: "{{ project_server_owner }}"
 gunicorn_log_file: "{{ log_dir }}/{{ project_name }}_gunicorn.log"
 gunicorn_sock_file: "{{ project_path }}/{{ project_name }}_gunicorn.sock"
 
