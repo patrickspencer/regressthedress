@@ -4,9 +4,8 @@ import matplotlib.pyplot as plt
 from fuzzywuzzy import fuzz, process
 import jellyfish
 from wombat.models import dbsession, engine
-from wombat.models.items import Item
-from wombat.models.rentalitems import RentalItem
-from wombat.models.rentals import Rental
+from wombat.models import Item, RentalItem, Rental
+from wombat import engine
 
 # items = dbsession.query(Item) \
 #               .filter(RentalItem.id == event_id).first()
@@ -117,13 +116,13 @@ def get_top_n_similar_items():
             d.pop(min(d, key=d.get), None)
     return d
 
-l = []
-while len(d) > 0:
-    l.append((max(d, key=d.get), max(d.values())))
-    d.pop(max(d, key=d.get))
+# l = []
+# while len(d) > 0:
+#     l.append((max(d, key=d.get), max(d.values())))
+#     d.pop(max(d, key=d.get))
 
-for i in l:
-    print(dbsession.query(Item).filter(Item.id == i[0]).first())
+# for i in l:
+#     print(dbsession.query(Item).filter(Item.id == i[0]).first())
 # d = {1: 2, 3: 6, 5: 10}
 # print(len(d))
 # print(min(d, key=d.get))
@@ -132,6 +131,10 @@ for i in l:
 #     print("yes")
 # print(len(items))
 
-r = requests.get()
-items = dbsession.query(Item).all()
-print(items[0].rental.item_price)
+# r = requests.get()
+# items = dbsession.query(Item).all()
+# print(items[0].rental.item_price)
+descr = "Gown with Long Sleeves and Deep V" 
+brand = "For Love & Lemons" 
+item_type = "bags"
+get_top_n_similar_items(descr, brand, item_type, method='l')
