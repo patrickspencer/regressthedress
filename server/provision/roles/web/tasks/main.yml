@@ -11,6 +11,12 @@
 #        version="{{ git_branch }}"
 #        depth=1
 
+- name: Run setup.py to setup Wombat as a module
+  command: python3 setup.py develop
+  args: 
+    chdir: "{{ project_path  }}"
+  run_once: true
+
 - include: create_users_and_groups.yml
   tags: users_and_groups
 

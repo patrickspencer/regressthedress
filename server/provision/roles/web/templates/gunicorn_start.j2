@@ -14,7 +14,7 @@ echo "Starting $NAME as `whoami`"
 # Activate the virtual environment
 cd $PROJECT_DIR
 . {{ virtualenv_path }}/bin/activate
-source {{ project_path }}/bin/postactivate
+source {{ virtualenv_path }}/bin/postactivate
 export PYTHONPATH=$PROJECT_DIR:$PYTHONPATH
 
 # Create the run directory if it doesn't exist
