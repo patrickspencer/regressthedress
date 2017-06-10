@@ -132,4 +132,7 @@ typings/
 .env
 
 # ansible
-# *.retry
+*.retry
+wombat/settings.py
+.virtualenvs
+gunicorn_start.sh
