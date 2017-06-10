@@ -12,10 +12,11 @@
 #        depth=1
 
 - name: Run setup.py to setup Wombat as a module
-  command: python3 setup.py develop
-  args: 
-    chdir: "{{ project_path  }}"
+  command: "python3 {{ project_path  }}/setup.py develop"
   run_once: true
+
+- name: Run create_db_tables.py to provision database
+  command: "python3 {{ project_path  }}/wombat/bin/create_db_tables.py develop"
 
 - include: create_users_and_groups.yml
   tags: users_and_groups
