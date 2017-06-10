@@ -1,8 +1,10 @@
 import numpy as np
 from wombat import engine
 from wombat.models import dbsession
+from wombat.models import dbsession, Item
 from wombat.webapp.forms import DescriptionForm
 from flask import Blueprint, render_template, request
+import matplotlib.pyplot as plt
 
 main = Blueprint('main', __name__, url_prefix='/')
 
@@ -25,3 +27,24 @@ def finditem():
             domain = items[1],
             all_prices = items[2] 
             )
+
+@main.route('plot', methods=['GET'])
+def plot():
+    if request.args['item_type'] and request.args['brand']:
+        items = dbsession.query(Item).filter(
+                Item.brand == request.args['brand'], 
+                Item.item_type == request.args['item_type'])
+    elif request.args['item_type']:
+        items = dbsession.query(Item).filter(
+                Item.item_type == request.args['item_type'])
+    c = [item.cost for item in items]
+    # plt.boxplot(c)
+    # plt.show()
+    # fig = plt.figure()
+    # canvas = FigureCanvas(fig)
+    # output = StringIO.StringIO()
+    # canvas.print_png(output)
+    # response = make_response(output.getvalue())
+    # response.mimetype = 'image/png'
+    # return response
+    return render_template('plot.jinja2', items=items)
