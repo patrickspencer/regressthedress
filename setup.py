@@ -9,7 +9,7 @@ setup(
     name = 'wombat',
     version = '0.2',
     description = "A webapp for stylelend renting price suggestion",
-    long_description = readme,
+    long_description = "",
     author = "Patrick Spencer",
     author_email = "pkspenc@gmail.com",
     url = "http://bitbucket.org/patrickspencer/stylelend_wombat/",
