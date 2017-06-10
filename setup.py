@@ -3,8 +3,6 @@
 
 from setuptools import setup
 
-readme = open('README.md').read()
-
 setup(
     name = 'wombat',
     version = '0.2',
