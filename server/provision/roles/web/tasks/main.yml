@@ -15,14 +15,14 @@
   command: "python3 {{ project_path  }}/setup.py develop"
   run_once: true
 
-- name: Run create_db_tables.py to provision database
-  command: "python3 {{ project_path  }}/wombat/bin/create_db_tables.py develop"
-
 - include: create_users_and_groups.yml
   tags: users_and_groups
 
 - include: setup_virtualenv.yml
   tags: virtualenv
+
+# - name: Run create_db_tables.py to provision database
+#   command: "{{ virtualenv_path }}/bin/activate && python3 {{ project_path  }}/wombat/bin/create_db_tables.py develop"
 
 - include: set_file_permissions.yml
   tags: permissions
