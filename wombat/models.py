@@ -61,3 +61,9 @@ class Rental(Base):
        return "<Rental(total_cost='%s', created_at='%s')>" \
                % (self.total_cost, self.created_at)
 
+class ItemFeature(Base):
+    __tablename__ = 'item_features'
+
+    id                = Column(Integer, primary_key=True)
+    name              = Column(String)
+    category          = Column(Integer)
