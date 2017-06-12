@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-    features
+    ml_model
     ~~~~~~~~
+    Machine learning model file
+    
+    Holds dataframes and arrays that are used to make the machine learning
+    model.
+
     This modules is used for the following purposes
     1.) To create a point of reference for the creation of the predictive 
         model
@@ -23,22 +28,28 @@ rent_per_week_max = 1000
 # Usually we just select all the brands but sometimes we need to limit the
 # number we choose for testing purposes and it makes sense just to pick the
 # most popular
-top_brands_query = "SELECT brand, count(brand) FROM items WHERE brand != 'LENDER SUBMISSION FILL IN' GROUP BY brand ORDER BY count(brand) DESC;"
-top_brand_df = pd.read_sql_query(top_brands_query, engine)
-top_brands = ["\'{}\'".format(brand.replace("'", "''")) for brand in top_brand_df['brand']]
-top_brands = ', '.join(top_brands)
+brands_query = "SELECT brand, count(brand) FROM items WHERE brand != 'LENDER SUBMISSION FILL IN' GROUP BY brand ORDER BY count(brand) DESC;"
 
-query = "SELECT brand, item_type, cost, rent_per_week FROM items WHERE brand in ({}) AND rent_per_week < {}".format(top_brands, rent_per_week_max)
-df = pd.read_sql_query(query, engine)
+brand_df = pd.read_sql_query(brands_query, engine)
+brands_escaped = ["\'{}\'".format(brand.replace("'", "''")) for brand in brand_df['brand']]
+brands_escaped = ', '.join(brands_escaped)
+
+# create the list of brands so other modules can access what brands are being
+# used to create the model
+res = engine.execute(brands_query).fetchall()
+brands = [r[0] for r in res]
+
+# grab items form db to train model.
+# training query is the canonical query that the machine learning model is
+# based on. If you change it then you have to reconstuct the model
+canonical_query = "SELECT brand, item_type, title, cost, rent_per_week FROM items WHERE brand in ({}) AND rent_per_week < {}".format(brands_escaped, rent_per_week_max)
+df = pd.read_sql_query(canonical_query, engine)
+canonical_df = df
 
 # get one-hot columns for brands 
 dummified_brands = pd.get_dummies(df['brand'])
 df = pd.concat([df, dummified_brands], axis = 1)
 df = df.drop('brand', axis = 1)
-
-# create the list of brands so other modules can access what brands are being
-# used to create the model
-brands = dummified_brands.columns.values
 
 # get one-hot columns for item_types
 dummified_items = pd.get_dummies(df['item_type'])
@@ -47,4 +58,5 @@ df = df.drop('item_type', axis = 1)
 
 # create the list of brands so other modules can access what brands are being
 # used to create the model
-item_types = dummified_items.columns.values
+item_types = engine.execute('SELECT DISTINCT item_type FROM items;').fetchall()
+item_types = [r[0] for r in item_types]
