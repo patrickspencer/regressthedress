@@ -15,16 +15,7 @@ import pandas as pd
 from wombat.engine import ml_model
 from wombat.models import dbsession, ItemAdjective, ItemType
 
-# get list of adjective features form database
-features_adj = dbsession.query(ItemAdjective).all()
-features_adj = [f.name for f in features_adj]
-
-item_types = dbsession.query(ItemType).all()
-item_types = [item.name for item in item_types]
-
-brands = ml_model.brands
-
-def create_one_hot_row_adj(sentence):
+def create_one_hot_row_adj(sentence, features_adj):
     """Fuzzy search for words from ajective list in sentence"""
     l = []
     for feature in features_adj:
@@ -44,6 +35,15 @@ def create_one_hot_row(input_item_type, item_types):
         else:                                       
             l.append(0)
     return l
+
+# get list of adjective features form database
+features_adj = dbsession.query(ItemAdjective).all()
+features_adj = [f.name for f in features_adj]
+
+item_types = dbsession.query(ItemType).all()
+item_types = [item.name for item in item_types]
+
+brands = ml_model.brands
 
 # sentence1 = 'Adrianna Papell Print Satin striped Handkerchief Dress shoulder'
 # sentence2 = 'Micah Floral Silk Wrap Dress'
