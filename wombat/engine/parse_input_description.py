@@ -10,10 +10,12 @@
     These words were used in creating our model.
 """
 
+import os
 import re
 import pandas as pd
 from wombat.engine import ml_model
-from wombat.models import dbsession, ItemAdjective, ItemType
+from sklearn.externals import joblib
+from wombat.models import dbsession, engine, ItemAdjective, ItemType
 
 def create_one_hot_row_adj(sentence, features_adj):
     """Fuzzy search for words from ajective list in sentence"""
@@ -36,17 +38,33 @@ def create_one_hot_row(input_string, lexicon):
             l.append(0)
     return l
 
-# get list of adjective features form database
-features_adj = dbsession.query(ItemAdjective).all()
-features_adj = [f.name for f in features_adj]
+# load model file
+model_dir = '/home/patrick/Dropbox/insight/wombat/wombat/engine/stat_model_pickles'
+model = os.path.join(model_dir, 'rfr_v0.3_with_adj.pkl')
+clf = joblib.load(model)
 
-item_types = dbsession.query(ItemType).all()
-item_types = [item.name for item in item_types]
+# main prediction function
+def get_predicted_value(brand, item_type, title):
+    brands_one_hot = create_one_hot_row(brand, ml_model.brands)
 
-brands = ml_model.brands
+    item_types_query = "SELECT * FROM item_types;"
+    item_types = [i[1] for i in engine.execute(item_types_query).fetchall()]
+    item_types_one_hot = create_one_hot_row(item_type, item_types)
 
-# sentence1 = 'Adrianna Papell Print Satin striped Handkerchief Dress shoulder'
-# sentence2 = 'Micah Floral Silk Wrap Dress'
-# print(create_one_hot_row_adj(sentence1))
-# print(create_one_hot_row('dresses', item_types))
-# print(create_one_hot_row('Nicole Miller', brands))
+    adjectives_query = "SELECT * FROM item_adjectives;"
+    adjectives = [a[1] for a in engine.execute(adjectives_query).fetchall()]
+    adjectives_one_hot = create_one_hot_row_adj(title, adjectives)
+
+    one_hot_row = brands_one_hot + item_types_one_hot + adjectives_one_hot
+
+    # make columns
+    columns = ml_model.brands + item_types + adjectives
+    input_df = pd.DataFrame(one_hot_row, columns)
+
+    return clf.predict(input_df.T)
+
+brand = 'Tibi'
+item_type = "dresses"
+title = 'Lurex Dress'
+
+print(get_predicted_value(brand, item_type, title))
