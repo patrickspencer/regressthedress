@@ -29,8 +29,6 @@ def get_or_create_adjective(name):
         dbsession.commit()
         return instance, True
 
-# adjectives
-
 # empty string is somehow a designer brand
 banned_list = ['']
 
@@ -46,7 +44,6 @@ for adj in adjectives:
     print(adj.name)
 
 # item types
-
 def get_or_create_item_type(name):
     instance = dbsession.query(ItemType).filter(ItemType.name == name).first()
     if instance:

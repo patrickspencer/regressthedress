@@ -39,5 +39,5 @@ def process_sentence(text):
             fp.write(word)
 
 res = engine.execute("SELECT title FROM items WHERE brand != 'LENDER SUBMISSION FILL IN' AND rent_per_week < 1000").fetchall()
-for title in res[51:100]:
+for title in res[100:200]:
     process_sentence(title[0])
