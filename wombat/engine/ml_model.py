@@ -28,7 +28,7 @@ rent_per_week_max = 1000
 # Usually we just select all the brands but sometimes we need to limit the
 # number we choose for testing purposes and it makes sense just to pick the
 # most popular
-brands_query = "SELECT brand, count(brand) FROM items WHERE brand != 'LENDER SUBMISSION FILL IN' GROUP BY brand ORDER BY count(brand) DESC;"
+brands_query = "SELECT brand, count(brand) FROM items WHERE brand != 'LENDER SUBMISSION FILL IN' AND rent_per_week < {} GROUP BY brand ORDER BY count(brand) DESC;".format(rent_per_week_max)
 
 brand_df = pd.read_sql_query(brands_query, engine)
 brands_escaped = ["\'{}\'".format(brand.replace("'", "''")) for brand in brand_df['brand']]
@@ -38,11 +38,12 @@ brands_escaped = ', '.join(brands_escaped)
 # used to create the model
 res = engine.execute(brands_query).fetchall()
 brands = [r[0] for r in res]
+brand_length = len(brands)
 
 # grab items form db to train model.
 # training query is the canonical query that the machine learning model is
 # based on. If you change it then you have to reconstuct the model
-canonical_query = "SELECT brand, item_type, title, cost, rent_per_week FROM items WHERE brand in ({}) AND rent_per_week < {}".format(brands_escaped, rent_per_week_max)
+canonical_query = "SELECT brand, item_type, title, cost, rent_per_week, description FROM items WHERE brand in ({}) AND rent_per_week < {}".format(brands_escaped, rent_per_week_max)
 df = pd.read_sql_query(canonical_query, engine)
 canonical_df = df
 
