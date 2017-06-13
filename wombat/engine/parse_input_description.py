@@ -27,10 +27,10 @@ def create_one_hot_row_adj(sentence, features_adj):
     return l
 
 # used for brand and item_type
-def create_one_hot_row(input_item_type, item_types):
+def create_one_hot_row(input_string, lexicon):
     l = []
-    for item in item_types:
-        if input_item_type == item:                                       
+    for phrase in lexicon:
+        if input_string == lexicon:                                       
             l.append(1)
         else:                                       
             l.append(0)
