@@ -1,1 +1,1 @@
-sass --watch sass:../static/css --style compressed
+sass --watch sass:../static/css
