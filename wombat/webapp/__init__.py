@@ -1,4 +1,5 @@
 from flask import Flask
-import wombat.webapp.views
+from wombat.webapp.views import main
 
 app = Flask(__name__)
+app.register_blueprint(main)
