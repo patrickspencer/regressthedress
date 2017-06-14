@@ -21,10 +21,10 @@ def create_one_hot_row_adj(sentence, features_adj):
     """Fuzzy search for words from ajective list in sentence"""
     l = []
     for feature in features_adj:
-        match = re.search('{}'.format(feature), sentence, re.IGNORECASE) 
-        if match:                                       
+        match = re.search('{}'.format(feature), sentence, re.IGNORECASE)
+        if match:
             l.append(1)
-        else:                                       
+        else:
             l.append(0)
     return l
 
@@ -32,15 +32,16 @@ def create_one_hot_row_adj(sentence, features_adj):
 def create_one_hot_row(input_string, lexicon):
     l = []
     for phrase in lexicon:
-        if input_string == lexicon:                                       
+        if input_string == lexicon:
             l.append(1)
-        else:                                       
+        else:
             l.append(0)
     return l
 
 # load model file
 model_dir = '/home/patrick/Dropbox/insight/wombat/wombat/engine/stat_model_pickles'
-model = os.path.join(model_dir, 'rfr_v0.3_with_adj.pkl')
+model_dir = os.path.dirname(os.path.abspath(__file__))
+model = os.path.join(model_dir, 'stat_model_pickles', 'rfr_v0.3_with_adj.pkl')
 clf = joblib.load(model)
 
 # main prediction function
@@ -67,4 +68,4 @@ brand = 'Tibi'
 item_type = "dresses"
 title = 'Lurex Dress'
 
-print(get_predicted_value(brand, item_type, title))
+# print(get_predicted_value(brand, item_type, title))
