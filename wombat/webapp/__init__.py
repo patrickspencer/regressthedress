@@ -1,4 +1,4 @@
 from flask import Flask
+import wombat.webapp.views
 
 app = Flask(__name__)
-app.config['DEBUG'] = True

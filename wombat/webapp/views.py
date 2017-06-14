@@ -2,9 +2,11 @@ import numpy as np
 from wombat import engine
 from wombat.models import dbsession
 from wombat.models import dbsession, Item
+from wombat.webapp import app
 from wombat.webapp.forms import DescriptionForm
 from flask import render_template, request
 import matplotlib.pyplot as plt
+
 
 @main.route("/")
 def index():

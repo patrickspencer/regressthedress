@@ -1,5 +1,4 @@
-from wombat import webapp
+from wombat.webapp import app
 
 if __name__ == "__main__":
-    app = webapp.create_app()
     app.run(debug=True)
