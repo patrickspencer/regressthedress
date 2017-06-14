@@ -1,36 +1,51 @@
 {% extends "base.jinja2" %}
 
 {% block content %}
-<form method="POST" action="{{ url_for('main.index') }}" class="form-inline">
 <div class="form-group">
+  <form method="POST" action="{{ url_for('main.index') }}" class="form-inline">
 
     <div class="row">
-	<div id="description_field_row" class="col-md-12">
-	    {{ form.description.label }}: <br />
-	    {{ form.description(class_='form-control') }} <br />
-	</div>
+      <div id="description_field_row" class="col-md-12">
+          {{ form.description.label }}: <br />
+          {{ form.description(class_='form-control') }} <br />
+      </div>
     </div><!-- /.row -->
 
     <div id="brand_item_type_field_row" class="row">
-	<div class="col-md-5">
-	    <span id="item_type_label">{{ form.item_type.label }}:</span>
-	    {{ form.item_type(class_='form-control') }}
-	</div>
-	<div class="col-md-7">
-	    <span id="brand_label">{{ form.brand.label }}:</span>
-	    {{ form.brand(class_='form-control') }}
-	</div>
+      <div class="col-md-4">
+          <span id="item_type_label">{{ form.item_type.label }}:</span>
+          {{ form.item_type(class_='form-control') }}
+      </div>
+      <div class="col-md-8">
+          <span id="brand_label">{{ form.brand.label }}:</span>
+          {{ form.brand(class_='form-control') }}
+      </div>
     </div><!-- /.row -->
 
-    {{ form.submit(class_="btn btn") }} <br />
+      {{ form.submit(class_="btn btn") }} <br />
+  </form>
 </div><!-- /.from-group -->
-</form>
-<br/>
+
+<div class="row">
+  <div id="description_field_row" class="col-md-12">
     Example searches:
     <ul>
-    <li><a href="#" class="pre-descr">Gown with Long Sleeves and Deep V</a></li>
-    <li><a href="#" class="pre-descr">Micah Floral Silk Wrap Dress</a></li>
-    <li><a href="#" class="pre-descr">Adrianna Papell Print Satin Chiffon Handkerchief Dress</a></li>
-    <li><a href="#" class="pre-descr">Loveappella V-Neck Jersey Maxi Dress (Regular & Petite)</a></li>
+      <li><a href="#" class="pre-descr">Gown with Long Sleeves and Deep V</a></li>
+      <li><a href="#" class="pre-descr">Micah Floral Silk Wrap Dress</a></li>
+      <li><a href="#" class="pre-descr">Adrianna Papell Print Satin Chiffon Handkerchief Dress</a></li>
+      <li><a href="#" class="pre-descr">Loveappella V-Neck Jersey Maxi Dress (Regular & Petite)</a></li>
     </ul>
+  </div><!-- /.col-md-12 -->
+</div><!-- /.row -->
+
+
+<div class="panel panel-default">
+<div class="panel-heading">Results</div>
+<div class="panel-body">
+          {% if request.method == 'POST' %}
+            {{ request.form['description'] }}
+          {% endif %}
+</div>
+</div>
 {% endblock %}
+

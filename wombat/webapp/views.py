@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 main = Blueprint('main', __name__, url_prefix='/')
 
-@main.route("/")
+@main.route("/", methods=['GET', 'POST'])
 def index():
     form = DescriptionForm(request.form)
     return render_template('index.jinja2', form=form)
