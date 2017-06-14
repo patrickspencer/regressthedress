@@ -1,19 +1,31 @@
 {% extends "base.jinja2" %}
 
 {% block content %}
-    <form method="POST" action="{{ url_for('main.finditem') }}" class="form-inline">
-       <div class="form-group">
-        {{ form.description.label }}: <br />
-        {{ form.description(class_='form-control') }} <br />
-        {{ form.item_type.label }}:
-        {{ form.item_type(class_='form-control') }}
-	<span style="width: 100px;"></span>
-        {{ form.brand.label }}: 
-        {{ form.brand(class_='form-control') }} <br />
-        {{ form.submit(class_="btn btn") }} <br />
-      </div>
-    </form>
-    <br/>
+<form method="POST" action="{{ url_for('main.index') }}" class="form-inline">
+<div class="form-group">
+
+    <div class="row">
+	<div id="description_field_row" class="col-md-12">
+	    {{ form.description.label }}: <br />
+	    {{ form.description(class_='form-control') }} <br />
+	</div>
+    </div><!-- /.row -->
+
+    <div id="brand_item_type_field_row" class="row">
+	<div class="col-md-5">
+	    <span id="item_type_label">{{ form.item_type.label }}:</span>
+	    {{ form.item_type(class_='form-control') }}
+	</div>
+	<div class="col-md-7">
+	    <span id="brand_label">{{ form.brand.label }}:</span>
+	    {{ form.brand(class_='form-control') }}
+	</div>
+    </div><!-- /.row -->
+
+    {{ form.submit(class_="btn btn") }} <br />
+</div><!-- /.from-group -->
+</form>
+<br/>
     Example searches:
     <ul>
     <li><a href="#" class="pre-descr">Gown with Long Sleeves and Deep V</a></li>
