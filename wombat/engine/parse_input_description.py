@@ -45,7 +45,7 @@ model = os.path.join(model_dir, 'stat_model_pickles', 'rfr_v0.3_with_adj.pkl')
 clf = joblib.load(model)
 
 # main prediction function
-def get_predicted_value(brand, item_type, title):
+def get_predicted_value_rfr(brand, item_type, title):
     brands_one_hot = create_one_hot_row(brand, ml_model.brands)
 
     item_types_query = "SELECT * FROM item_types;"
@@ -61,11 +61,11 @@ def get_predicted_value(brand, item_type, title):
     # make columns
     columns = ml_model.brands + item_types + adjectives
     input_df = pd.DataFrame(one_hot_row, columns)
-
-    return clf.predict(input_df.T)
-
-brand = 'Tibi'
-item_type = "dresses"
-title = 'Lurex Dress'
+    prediction = clf.predict(input_df.T)[0]
+    return prediction
+#
+# brand = 'Tibi'
+# item_type = "dresses"
+# title = 'Lurex Dress'
 
 # print(get_predicted_value(brand, item_type, title))
