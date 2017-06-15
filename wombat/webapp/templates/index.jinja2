@@ -12,11 +12,11 @@
     </div><!-- /.row -->
 
     <div id="brand_item_type_field_row" class="row">
-      <div class="col-md-4">
+      <div class="col-md-6">
           <span id="item_type_label">{{ form.item_type.label }}:</span>
           {{ form.item_type(class_='form-control') }}
       </div>
-      <div class="col-md-8">
+      <div class="col-md-6">
           <span id="brand_label">{{ form.brand.label }}:</span>
           {{ form.brand(class_='form-control') }}
       </div>
@@ -38,14 +38,14 @@
   </div><!-- /.col-md-12 -->
 </div><!-- /.row -->
 
-
-<div class="panel panel-default">
-<div class="panel-heading">Results</div>
-<div class="panel-body">
-          {% if request.method == 'POST' %}
-            {{ request.form['description'] }}
-          {% endif %}
+{% if request.method == 'POST' %}
+<div class="panel panel-success">
+  <div class="panel-heading">Results</div>
+    <div class="panel-body">
+          Predicted value for item:
+          ${{ predicted_value }} per week
+    </div>
 </div>
-</div>
+{% endif %}
 {% endblock %}
 

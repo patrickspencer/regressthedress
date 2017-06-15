@@ -5,13 +5,21 @@ from wombat.models import dbsession, Item
 from wombat.webapp.forms import DescriptionForm
 from flask import Blueprint, render_template, request
 import matplotlib.pyplot as plt
+from wombat.engine.parse_input_description import get_predicted_value_rfr
 
 main = Blueprint('main', __name__, url_prefix='/')
 
-@main.route("/", methods=['GET', 'POST'])
+@main.route("/blah", methods=['GET', 'POST'])
 def index():
     form = DescriptionForm(request.form)
-    return render_template('index.jinja2', form=form)
+    predicted_value = ''
+    if request.method == 'POST':
+        title = request.form['description']
+        brand = request.form['brand']
+        item_type = request.form['item_type']
+        predicted_value = get_predicted_value_rfr(brand, item_type, title)
+    return render_template('index.jinja2', 
+            form=form, predicted_value = predicted_value)
 
 @main.route('finditem', methods=['GET', 'POST'])
 def finditem():
@@ -47,4 +55,9 @@ def plot():
     # response = make_response(output.getvalue())
     # response.mimetype = 'image/png'
     # return response
+
     return render_template('plot.jinja2', items=items)
+
+@main.route('/')
+def home():
+    pass
