@@ -9,7 +9,7 @@ from wombat.engine.parse_input_description import get_predicted_value_rfr
 
 main = Blueprint('main', __name__, url_prefix='/')
 
-@main.route("/blah", methods=['GET', 'POST'])
+@main.route("/", methods=['GET', 'POST'])
 def index():
     form = DescriptionForm(request.form)
     predicted_value = ''
@@ -57,7 +57,3 @@ def plot():
     # return response
 
     return render_template('plot.jinja2', items=items)
-
-@main.route('/')
-def home():
-    pass
