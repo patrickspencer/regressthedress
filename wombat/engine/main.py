@@ -29,7 +29,6 @@ def get_top_n_similar_items(input_text,
     actual_query = items.statement.compile(dialect=postgresql.dialect())
 
     # compare distance of input_string to each item title
-    d = {}
 
     for item in items.all():
         if not algorithm or algorithm == 'l':
@@ -47,6 +46,7 @@ def get_top_n_similar_items(input_text,
         similarity_rating = getattr(jellyfish, method)(input_text, item.title)
 
         # keep track of items with highest relevance in a dict d
+        d = {}
         if len(d) <= results_num:
             d[item.id] = similarity_rating
         if max(d.values()) > similarity_rating:

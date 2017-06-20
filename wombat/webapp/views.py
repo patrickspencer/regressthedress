@@ -57,7 +57,3 @@ def plot():
     # return response
 
     return render_template('plot.jinja2', items=items)
-
-@main.route('/')
-def home():
-    pass
