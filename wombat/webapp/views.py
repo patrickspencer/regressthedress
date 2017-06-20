@@ -9,7 +9,7 @@ from wombat.engine.parse_input_description import get_predicted_value_rfr
 
 main = Blueprint('main', __name__, url_prefix='/')
 
-@main.route("/blah", methods=['GET', 'POST'])
+@main.route("/", methods=['GET', 'POST'])
 def index():
     form = DescriptionForm(request.form)
     predicted_value = ''
@@ -18,7 +18,7 @@ def index():
         brand = request.form['brand']
         item_type = request.form['item_type']
         predicted_value = get_predicted_value_rfr(brand, item_type, title)
-    return render_template('index.jinja2', 
+    return render_template('index.jinja2',
             form=form, predicted_value = predicted_value)
 
 @main.route('finditem', methods=['GET', 'POST'])
