@@ -12,6 +12,7 @@ brands = [(b, b) for b in brands]
 class DescriptionForm(Form):
     description = StringField('Description', [validators.Length(min=1, max=5000)])
     submit = SubmitField(label='Submit')
-    item_type = SelectField(label='Item Category', choices=item_types)
+    item_type = SelectField(label='Category', choices=item_types)
     brand = SelectField(label='Brand', choices=brands)
+    price_range = SelectField(label='Price Range', choices=brands)
 
