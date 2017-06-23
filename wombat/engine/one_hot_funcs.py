@@ -1,13 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-    predict_price
+    one_hot_funcs
     ~~~~~~~~~~~~~
-    The main module for parsing input clothing item into pandas dataframes that
-    can be used to find the price using our model.
-
-    The user inputs the following: 'brand', 'item_type', 'title'. We search the
-    title for words in a predetermined list of words like 'chiffon', or 'lace'.
-    These words were used in creating our model.
+    Functions used for data into one-hot arrays
 """
 
 import os
@@ -17,6 +12,9 @@ import numpy as np
 from wombat.engine import ml_model
 from sklearn.externals import joblib
 from wombat.models import dbsession, engine, ItemAdjective, ItemType
+
+reg_model_dir = os.path.dirname(os.path.abspath(__file__))
+reg_model_path = os.path.join(reg_model_dir, 'stat_model_pickles', 'rfr_v0.3_w_adj_prices_better_brands.pkl')
 
 def create_one_hot_row_adj(sentence, features_adj):
     """Fuzzy search for words from ajective list in sentence"""
@@ -38,12 +36,6 @@ def create_one_hot_row(input_string, lexicon):
         else:
             l.append(0)
     return l
-
-# load model file
-model_dir = '/home/patrick/Dropbox/insight/wombat/wombat/engine/stat_model_pickles'
-model_dir = os.path.dirname(os.path.abspath(__file__))
-model = os.path.join(model_dir, 'stat_model_pickles', 'rfr_v0.3_w_adj_prices_better_brands.pkl')
-clf = joblib.load(model)
 
 def create_one_hot_row_brand_keyword(unknown_brand, list_of_keywords):
     """Fuzzy search for words from list of keywords that describe a brand
@@ -68,35 +60,27 @@ def create_one_hot_row_brand_keyword(unknown_brand, list_of_keywords):
     return l
 
 # main prediction function
-def get_predicted_value(brand, item_type, title, est_price):
-    brands_one_hot = create_one_hot_row(brand, ml_model.brands)
-
-    item_types_query = "SELECT * FROM item_types;"
-    item_types = [i[1] for i in engine.execute(item_types_query).fetchall()]
-    item_types_one_hot = create_one_hot_row(item_type, item_types)
-    print(item_types)
+def one_hot_form_input(brand, item_type, title, est_price):
+    """
+    Returns pandas series
+    """
+    X_sample, _ = joblib.load(reg_model_path)
+    one_hot_array = X_sample
+    one_hot_array['cost'] = est_price
+    one_hot_array[brand] = 1
+    one_hot_array[item_type] = 1
 
     adjectives_query = "SELECT * FROM item_adjectives;"
     adjectives = [a[1] for a in engine.execute(adjectives_query).fetchall()]
-    adjectives_one_hot = create_one_hot_row_adj(title, adjectives)
+    for adj in adjectives:
+        match = re.search('{}'.format(adj), title, re.IGNORECASE)
+        if match:
+            #l.append(1)
+            try:
+                one_hot_array[adj] = 1
+            except TypeError:
+                pass
 
-    brands_query = "SELECT * FROM brands;"
-    brands = [b[1] for b in engine.execute(brands_query).fetchall()]
-    keywords = [b[2] for b in engine.execute(brands_query).fetchall()]
-    brands_one_hot = create_one_hot_row_brand_keyword(brand, keywords)
-
-    one_hot_row = brands_one_hot + item_types_one_hot + adjectives_one_hot + [est_price]
-
-    # make columns
-    columns = brands + item_types + adjectives + ['cost']
-    input_df = pd.DataFrame(one_hot_row, columns)
     # take the exponent because the model was trained on the log of rent values
-    prediction = np.exp(clf.predict(input_df.T)[0])
-    return prediction
-
-brand = 'Tibi'
-item_type = "dresses"
-title = 'Lurex Dress'
-est_price = 10
-
-print(get_predicted_value(brand, item_type, title, est_price))
+    # prediction = np.exp(reg.predict(input_df.T)[0])
+    return one_hot_array
