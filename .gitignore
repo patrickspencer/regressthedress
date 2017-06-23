@@ -136,3 +136,4 @@ typings/
 wombat/settings.py
 .virtualenvs
 gunicorn_start.sh
+extra_routes.py
