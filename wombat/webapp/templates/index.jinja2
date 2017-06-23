@@ -54,10 +54,16 @@
     </div><!-- /.row -->
     <div class="row input_row">
       <div class="col-md-2 control-label">
-        <span id="price_range_label">{{ form.est_price.label }}</span>
+        <span id="price_label">{{ form.est_price.label }}</span>
       </div>
       <div class="col-md-10">
         {{ form.est_price(class_='form-control select_custom') }}
+	  <span class="form_helper_text">
+	      <br>
+	      <small>
+		  (ex: This is the price you would pay if you bought this item or a similar item new.)
+              </small> 
+	  </span>
       </div><!-- /.col-md-10 -->
     </div><!-- /.row -->
     <div class="row">
