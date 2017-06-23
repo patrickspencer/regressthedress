@@ -17,7 +17,6 @@ engine = create_engine(settings.DATABASE_URI, echo=False)
 Session = sessionmaker(bind=engine)
 dbsession = Session()
 
-
 Base = declarative_base()
 
 
@@ -73,8 +72,8 @@ class ItemType(Base):
     id                = Column(Integer, primary_key=True)
     name              = Column(String)
 
-class ItemBrand(Base):
-    __tablename__ = 'item_brands'
+class Brand(Base):
+    __tablename__ = 'brands'
 
     id                = Column(Integer, primary_key=True)
     name              = Column(String)

@@ -1,51 +1,76 @@
 {% extends "base.jinja2" %}
 
 {% block content %}
-<div class="form-group">
-  <form method="POST" action="{{ url_for('main.index') }}" class="form-inline">
-
-<div style='text-align: center; margin: 20px 0 50px 0;'>
-    <h2>Regress the Dress</h2>
+<div class="row" id="title">
+    <div class="top_title">
+	<img src="{{ url_for('static', filename="img/red_dress.svg") }}" class="top_icon">
+	<span class="title_text">Regress the Dress</span>
+    </div>
 </div>
+
+<hr class="fancy_hr">
+  <span class="header">Enter in your item's details below</span>
+  <p class="explanation_p">
+    Please fill in all inputs. If your brand isn't on the list then
+    choose 'other'
+  </p>
+<div class="input-form-group">
+  <form method="POST" action="{{ url_for('main.index') }}" class="form-inline">
+    <div class="row input_row">
+      <div class="col-md-2 control-label">
+          <span id="item_type_label">{{ form.item_type.label }}</span>
+      </div>
+      <div class="col-md-10">
+          {{ form.item_type(class_='form-control select_custom') }}
+      </div>
+    </div><!-- /.row -->
+    <div class="row input_row">
+      <div class="col-md-2 control-label">
+        <span id="brand_label">{{ form.brand.label }}</span>
+      </div>
+      <div class="col-md-10">
+        {{ form.brand(class_='form-control select_custom') }}
+      </div>
+    </div><!-- /.row -->
+    <div class="row input_row">
+      <div class="col-md-2 control-label">
+        <span id="price_label">{{ form.est_price.label }}</span>
+      </div>
+      <div class="col-md-10">
+        {{ form.est_price(class_='form-control select_custom') }}
+	  <span class="form_helper_text">
+	      <br>
+	      <small>
+		  (ex: This is the price you would pay if you bought this item or a similar item new.)
+              </small> 
+	  </span>
+      </div><!-- /.col-md-10 -->
+    </div><!-- /.row -->
     <div class="row">
-      <div id="description_field_row" class="col-md-12">
-          {{ form.description.label }}: <br />
-          {{ form.description(class_='form-control', onfocus="if
-              (this.value=='Name') this.value='';") }} <br />
+      <div class="col-md-2 control-label">
+        <span id="description_label">{{ form.description.label }}</span>
       </div>
+      <div id="description_field_row" class="col-md-10">
+          {{ form.description(class_='form-control') }}
+	  <span class="form_helper_text">
+	      <br>
+	      <small>
+		  (ex: BCBG formfitting midi dress with contrasting floral embroidery and lattice trim)
+              </small> 
+	  </span>
+      </div><!-- /.col-md-10 -->
     </div><!-- /.row -->
 
-    <div id="brand_item_type_field_row" class="row">
-      <div class="col-md-5">
-          <span id="item_type_label">{{ form.item_type.label }}:</span>
-          {{ form.item_type(class_='form-control') }}
-      </div>
-      <div class="col-md-5">
-        <span id="brand_label">{{ form.brand.label }}:</span>
-        {{ form.brand(class_='form-control') }}
-      </div>
-      <div class="col-md-2 text-right">
-        {{ form.submit(class_="btn btn") }} <br />
+    <div class="row">
+      <div class="col-md-10 col-md-offset-2">
+        {{ form.submit(class_="btn btn") }}
       </div>
     </div><!-- /.row -->
-
   </form>
 </div><!-- /.from-group -->
 
-<div class="row" style='margin: 60px 0;'>
-  <div id="description_field_row" class="col-md-12">
-    Example searches:
-    <ul>
-      <li><a href="#" class="pre-descr">Gown with Long Sleeves and Deep V</a></li>
-      <li><a href="#" class="pre-descr">Micah Floral Silk Wrap Dress</a></li>
-      <li><a href="#" class="pre-descr">Adrianna Papell Print Satin Chiffon Handkerchief Dress</a></li>
-      <li><a href="#" class="pre-descr">Loveappella V-Neck Jersey Maxi Dress (Regular & Petite)</a></li>
-    </ul>
-  </div><!-- /.col-md-12 -->
-</div><!-- /.row -->
-
 {% if request.method == 'POST' %}
-<div class="panel panel-success">
+<div class="panel panel-success output_panel">
   <div class="panel-heading">Results</div>
     <div class="panel-body">
           Predicted value for item:
@@ -53,5 +78,29 @@
     </div>
 </div>
 {% endif %}
+
+<div class="about_this_site">
+<hr class="fancy_hr">
+<div id="brand_item_type_field_row" class="row">
+  <div class="col-md-6">
+    <span class="header">The Problem</span> 
+    <p class="explanation_p">
+	This is an independent consulting project for <a
+	href="http://stylelend.com">Stylelend.com</a>. They provides an online
+	market place for women to lease out their clothing to other people. The
+	problem right now is that you must send your clothes into them to have
+	the worth of your clothing evaluated. Who wants to wait that long to
+	find out how much your clothing items are worth?
+    </p>
+  </div> <!-- col-md-6  -->
+  <div class="col-md-6">
+    <span class="header">The Solution</span>
+    <p class="explanation_p">
+    This is an app that uses machine learning techniques on the database of inventory to make a prediction of how much you will earn just by entering in a few details on your clothes.
+    </p>
+  </div> <!-- col-md-6  -->
+</div><!-- /.row -->
+<hr class="fancy_hr">
+</div> <!-- / .about_this_site -->
 {% endblock %}
 

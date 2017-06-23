@@ -1,0 +1,36 @@
+{% extends "base.jinja2" %}
+
+{% block content %}
+<div class="row" id="title">
+  <h2>Regress the Dress</h2>
+</div>
+<div class="row" id="links">
+  <a href="/">What's this?</a>
+</div>
+<div class="about_this_site">
+<hr class="fancy_hr">
+<div id="brand_item_type_field_row" class="row">
+  <div class="col-md-6 explanation_p">
+    <span class="explanation_title">The Problem</span> 
+    <p>
+      <a href="http://stylelend.com">Stylelend.com</a>
+      provides an online market place for women to lease out their clothing.
+      Right now, you must send your clothes into them to have the worth of
+      your clothing evaluated. 
+    </p>
+  </div> <!-- col-md-6  -->
+  <div class="col-md-6 explanation_p">
+    <span class="explanation_title">The Solution</span>
+    <p>
+    This is an app that uses machine learning techniques on the database of
+    inventory to make a prediction of how much you will earn just by entering
+    in a few details on your clothes.
+    </p>
+  </div> <!-- col-md-6  -->
+</div><!-- /.row -->
+<hr class="fancy_hr">
+</div> <!-- / .about_this_site -->
+
+{% endif %}
+{% endblock %}
+

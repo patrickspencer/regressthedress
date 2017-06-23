@@ -1,54 +1,16 @@
 /* Space out content a bit */
 body {
+  font-size: 20px;
   padding-top: 20px;
-  padding-bottom: 20px; }
-
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-right: 15px;
-  padding-left: 15px; }
-
-/* Custom page header */
-.header {
   padding-bottom: 20px;
-  border-bottom: 1px solid #e5e5e5; }
-
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 40px; }
-
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5; }
+  font-family: 'Lato', sans-serif; }
 
 /* Customize container */
 @media (min-width: 768px) {
   .container {
-    max-width: 700px; } }
+    max-width: 850px; } }
 .container-narrow > hr {
   margin: 30px 0; }
-
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5; }
-
-.jumbotron .btn {
-  padding: 14px 24px;
-  font-size: 21px; }
-
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0; }
-
-.marketing p + h4 {
-  margin-top: 28px; }
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
@@ -58,20 +20,11 @@ body {
   .footer {
     padding-right: 0;
     padding-left: 0; }
+}
 
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px; }
-
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0; } }
-#description {
-  width: 100%; }
-
-body, .form-group {
-  font-family: 'Lato', sans-serif;
-  font-size: 16px; }
+.input-form-group {
+  margin-top: 20px;
+}
 
 #item_type_label, #brand_label {
   padding-right: 5px; }
@@ -79,7 +32,7 @@ body, .form-group {
 #description_field_row {
   margin-bottom: 10px; }
 
-#brand_item_type_field_row {
+.input_row {
   margin-bottom: 10px; }
 
 textarea:hover,
@@ -96,5 +49,110 @@ label:focus,
 .btn.active {
   outline: 0px !important;
   -webkit-appearance: none; }
+
+#title {
+  text-align: center;
+  margin: 20px 0 30px 0; }
+
+#links {
+  text-align: center;
+  margin: 10px 0 20px 0; }
+
+.form-control {
+font-size: 100%;
+font-size: 90%;
+outline: none;
+-webkit-box-shadow: none !important;
+-moz-box-shadow: none !important;
+box-shadow: none !important; }
+
+.select_custom {
+  padding: 10px;
+}
+
+.select_custom {
+  outline: none;
+  padding: 5px;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important; }
+
+input, textarea, select, a { outline: none !important; }
+input:focus, textarea:focus, select:focus{ outline: none; }
+
+input[type="text"], textarea, select {
+  outline: none;
+  box-shadow:none !important;
+  border:1px solid #ccc !important; }
+
+.top_icon {
+  width: 40px; 
+  margin-top: -15px;
+  margin-right: 10px;
+}
+
+.title_text {
+  font-size: 250%; 
+  font-family: 'Spectral', serif;
+}
+
+.explanation_p {
+  color: #787878;
+  font-size: 90%; 
+  line-height: 170%;
+}
+
+.header {
+
+  margin: 20px 0 15px 0; 
+  font-size: 140%; 
+  line-height: 150%;
+  font-family: 'Spectral', serif;
+}
+
+.fancy_hr {
+height: 6px;
+background: url(/static/img/hr_stripe.png) repeat-x 0 0;
+  border: 0;
+}
+
+input[type="submit"] {
+  color: #442a25;
+  background-color: #f4715d;
+  font-weight: bold;
+  border: 1px solid #875952;
+}
+
+.form_helper_text {
+  color: #888888;
+  font-size: 90%;
+}
+
+.about_this_site {
+}
+
+.panel-heading {
+  padding: 8px;
+}
+
+.panel-body {
+  padding: 8px;
+}
+
+.control-label {
+  text-align: right;
+}
+
+.output_panel {
+  margin-top: 20px;
+}
+
+#description {
+  width: 100%;
+}
+
+#form-directions {
+  margin: 0 0 50px 0;
+}
 
 /*# sourceMappingURL=main.css.map */
