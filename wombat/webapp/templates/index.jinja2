@@ -68,18 +68,6 @@
     </div><!-- /.row -->
   </form>
 </div><!-- /.from-group -->
-<!--  -->
-<!-- <div class="row" style='margin: 60px 0;'> -->
-<!--   <div id="description_field_row" class="col&#45;md&#45;12"> -->
-<!--     Example searches: -->
-<!--     <ul> -->
-<!--       <li><a href="#" class="pre&#45;descr">Gown with Long Sleeves and Deep V</a></li> -->
-<!--       <li><a href="#" class="pre&#45;descr">Micah Floral Silk Wrap Dress</a></li> -->
-<!--       <li><a href="#" class="pre&#45;descr">Adrianna Papell Print Satin Chiffon Handkerchief Dress</a></li> -->
-<!--       <li><a href="#" class="pre&#45;descr">Loveappella V&#45;Neck Jersey Maxi Dress (Regular &#38; Petite)</a></li> -->
-<!--     </ul> -->
-<!--   </div><!&#45;&#45; /.col&#45;md&#45;12 &#45;&#45;> -->
-<!-- </div><!&#45;&#45; /.row &#45;&#45;> -->
 
 {% if request.method == 'POST' %}
 <div class="panel panel-success output_panel">
@@ -89,6 +77,7 @@
           ${{ predicted_value }} per week
     </div>
 </div>
+{% endif %}
 
 <div class="about_this_site">
 <hr class="fancy_hr">
@@ -96,10 +85,12 @@
   <div class="col-md-6">
     <span class="header">The Problem</span> 
     <p class="explanation_p">
-	<a href="http://stylelend.com">Stylelend.com</a>
-	provides an online market place for women to lease out their clothing.
-	Right now, you must send your clothes into them to have the worth of
-	your clothing evaluated. 
+	This is an independent consulting project for <a
+	href="http://stylelend.com">Stylelend.com</a>. They provides an online
+	market place for women to lease out their clothing to other people. The
+	problem right now is that you must send your clothes into them to have
+	the worth of your clothing evaluated. Who wants to wait that long to
+	find out how much your clothing items are worth?
     </p>
   </div> <!-- col-md-6  -->
   <div class="col-md-6">
@@ -111,7 +102,5 @@
 </div><!-- /.row -->
 <hr class="fancy_hr">
 </div> <!-- / .about_this_site -->
-
-{% endif %}
 {% endblock %}
 
