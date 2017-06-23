@@ -8,6 +8,32 @@
     </div>
 </div>
 
+<div class="about_this_site">
+<hr class="fancy_hr">
+<div id="brand_item_type_field_row" class="row">
+  <div class="col-md-6">
+    <span class="header">The Problem</span> 
+    <p class="explanation_p">
+	<a href="http://stylelend.com">Stylelend.com</a>
+	provides an online market place for women to lease out their clothing.
+	Right now, you must send your clothes into them to have the worth of
+	your clothing evaluated. 
+    </p>
+  </div> <!-- col-md-6  -->
+  <div class="col-md-6">
+    <span class="header">The Solution</span>
+    <p class="explanation_p">
+    This is an app that uses machine learning techniques on the database of inventory to make a prediction of how much you will earn just by entering in a few details on your clothes.
+    </p>
+  </div> <!-- col-md-6  -->
+</div><!-- /.row -->
+<hr class="fancy_hr">
+</div> <!-- / .about_this_site -->
+
+  <span class="header">Enter in Your Details Below</span>
+  <p class="explanation_p">
+    Put as much detail about the item as possible.
+  </p>
 <div class="input-form-group">
   <form method="POST" action="{{ url_for('main.index') }}" class="form-inline">
     <div class="row input_row">
@@ -28,10 +54,10 @@
     </div><!-- /.row -->
     <div class="row input_row">
       <div class="col-md-2 control-label">
-        <span id="price_range_label">{{ form.price_range.label }}</span>
+        <span id="price_range_label">{{ form.est_price.label }}</span>
       </div>
       <div class="col-md-10">
-        {{ form.price_range(class_='form-control select_custom') }}
+        {{ form.est_price(class_='form-control select_custom') }}
       </div><!-- /.col-md-10 -->
     </div><!-- /.row -->
     <div class="row">
@@ -41,6 +67,7 @@
       <div id="description_field_row" class="col-md-10">
           {{ form.description(class_='form-control') }}
 	  <span class="form_helper_text">
+	      <br>
 	      <small>
 		  (ex: BCBG formfitting midi dress with contrasting floral embroidery and lattice trim)
               </small> 
@@ -76,39 +103,10 @@
           ${{ predicted_value }} per week
     </div>
 </div>
-{% endif %}
-    <div class="about_this_site">
-    <hr class="fancy_hr">
-    <div id="brand_item_type_field_row" class="row">
-      <div class="col-md-6 explanation_p">
-	<span class="explanation_title">The Problem</span> 
-	<p>
-	    <a href="http://stylelend.com">Stylelend.com</a>
-	    provides an online market place for women to lease out their clothing.
-	    Right now, you must send your clothes into them to have the worth of
-	    your clothing evaluated. 
-	</p>
-      </div> <!-- col-md-6  -->
-      <div class="col-md-6 explanation_p">
-	<span class="explanation_title">The Solution</span>
-	<p>
-	This is an app that uses machine learning techniques on the database of inventory to make a prediction of how much you will earn just by entering in a few details on your clothes.
-	</p>
-      </div> <!-- col-md-6  -->
-    </div><!-- /.row -->
-    <hr class="fancy_hr">
-    <div id="brand_item_type_field_row" class="row">
-      <div class="col-md-12 explanation_p">
 
-	<span class="explanation_title">The Nitty Gritty</span> 
-	<p>
-	    <a href="http://stylelend.com">Stylelend.com</a>
-	    provides an online market place for women to lease out their clothing.
-	    Right now, you must send your clothes into them to have the worth of
-	    your clothing evaluated. 
-	</p>
-      </div> <!-- col-md-6  -->
-    </div><!-- /.row -->
-    </div> <!-- / .about_this_site -->
+<div class="row">
+    
+</div>
+{% endif %}
 {% endblock %}
 

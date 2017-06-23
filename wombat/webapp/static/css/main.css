@@ -1,55 +1,16 @@
 /* Space out content a bit */
 body {
-  font-size: 15px
+  font-size: 20px;
   padding-top: 20px;
-  padding-bottom: 20px; }
-
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-right: 15px;
-  padding-left: 15px; }
-
-/* Custom page header */
-.header {
   padding-bottom: 20px;
-  border-bottom: 1px solid #e5e5e5; }
-
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 40px; }
-
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5; }
+  font-family: 'Lato', sans-serif; }
 
 /* Customize container */
 @media (min-width: 768px) {
   .container {
-    max-width: 700px; } }
+    max-width: 850px; } }
 .container-narrow > hr {
   margin: 30px 0; }
-
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5; }
-
-.jumbotron .btn {
-  padding: 14px 24px;
-  font-size: 21px; }
-
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0; }
-
-.marketing p + h4 {
-  margin-top: 28px; }
 
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
@@ -59,24 +20,11 @@ body {
   .footer {
     padding-right: 0;
     padding-left: 0; }
-
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px; }
-
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0; } }
-#description {
-  width: 100%; }
-
-body {
-  font-family: 'Lato', sans-serif;
-  font-size: 16px; }
+}
 
 .input-form-group {
-  font-family: 'Lato', sans-serif;
-  font-size: 16px; }
+  margin-top: 20px;
+}
 
 #item_type_label, #brand_label {
   padding-right: 5px; }
@@ -104,18 +52,23 @@ label:focus,
 
 #title {
   text-align: center;
-  margin: 20px 0 20px 0; }
+  margin: 20px 0 30px 0; }
 
 #links {
   text-align: center;
   margin: 10px 0 20px 0; }
 
 .form-control {
+font-size: 100%;
+font-size: 90%;
 outline: none;
-padding: 10px;
 -webkit-box-shadow: none !important;
 -moz-box-shadow: none !important;
 box-shadow: none !important; }
+
+.select_custom {
+  padding: 10px;
+}
 
 .select_custom {
   outline: none;
@@ -143,13 +96,14 @@ input[type="text"], textarea, select {
   font-family: 'Spectral', serif;
 }
 
-.explanation_p > p {
+.explanation_p {
   color: #787878;
   font-size: 90%; 
   line-height: 170%;
 }
 
-.explanation_title {
+.header {
+
   margin: 20px 0 15px 0; 
   font-size: 140%; 
   line-height: 150%;
@@ -172,11 +126,9 @@ input[type="submit"] {
 .form_helper_text {
   color: #888888;
   font-size: 90%;
-  margin-left: 10px;
 }
 
 .about_this_site {
-  margin-top: 50px;
 }
 
 .panel-heading {
@@ -191,12 +143,16 @@ input[type="submit"] {
   text-align: right;
 }
 
-.input-form-group > .row {
-  margin-bottom: 10px;
-}
-
 .output_panel {
   margin-top: 20px;
+}
+
+#description {
+  width: 100%;
+}
+
+#form-directions {
+  margin: 0 0 50px 0;
 }
 
 /*# sourceMappingURL=main.css.map */

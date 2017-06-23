@@ -14,5 +14,5 @@ class DescriptionForm(Form):
     submit = SubmitField(label='Submit')
     item_type = SelectField(label='Category', choices=item_types)
     brand = SelectField(label='Brand', choices=brands)
-    price_range = SelectField(label='Price Range', choices=brands)
+    est_price = StringField(label='Price Range')
 
