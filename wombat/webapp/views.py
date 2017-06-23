@@ -1,11 +1,11 @@
 import numpy as np
 from wombat import engine
-from wombat.models import dbsession
 from wombat.models import dbsession, Item
 from wombat.webapp.forms import DescriptionForm
 from flask import Blueprint, render_template, request
-import matplotlib.pyplot as plt
-from wombat.engine.predict_price import get_predicted_value
+from wombat.engine.one_hot_funcs import one_hot_form_input
+from wombat.engine import reg_model_path
+from sklearn.externals import joblib
 
 main = Blueprint('main', __name__, url_prefix='/')
 
@@ -18,7 +18,13 @@ def index():
         brand = request.form['brand']
         item_type = request.form['item_type']
         est_price = request.form['est_price']
-        predicted_value = get_predicted_value(brand, item_type, title, est_price)
+
+        predicted_value = engine.predict_price(brand = brand,
+            item_type = item_type, 
+            title = title, 
+            est_price = est_price)
+        predicted_value = '%.2f'%(predicted_value)
+
     return render_template('index.jinja2', 
             form=form, predicted_value = predicted_value)
 

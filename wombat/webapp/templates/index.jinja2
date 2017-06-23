@@ -8,31 +8,11 @@
     </div>
 </div>
 
-<div class="about_this_site">
 <hr class="fancy_hr">
-<div id="brand_item_type_field_row" class="row">
-  <div class="col-md-6">
-    <span class="header">The Problem</span> 
-    <p class="explanation_p">
-	<a href="http://stylelend.com">Stylelend.com</a>
-	provides an online market place for women to lease out their clothing.
-	Right now, you must send your clothes into them to have the worth of
-	your clothing evaluated. 
-    </p>
-  </div> <!-- col-md-6  -->
-  <div class="col-md-6">
-    <span class="header">The Solution</span>
-    <p class="explanation_p">
-    This is an app that uses machine learning techniques on the database of inventory to make a prediction of how much you will earn just by entering in a few details on your clothes.
-    </p>
-  </div> <!-- col-md-6  -->
-</div><!-- /.row -->
-<hr class="fancy_hr">
-</div> <!-- / .about_this_site -->
-
-  <span class="header">Enter in Your Details Below</span>
+  <span class="header">Enter in your item's details below</span>
   <p class="explanation_p">
-    Put as much detail about the item as possible.
+    Please fill in all inputs. If your brand isn't on the list then
+    choose 'other'
   </p>
 <div class="input-form-group">
   <form method="POST" action="{{ url_for('main.index') }}" class="form-inline">
@@ -110,9 +90,28 @@
     </div>
 </div>
 
-<div class="row">
-    
-</div>
+<div class="about_this_site">
+<hr class="fancy_hr">
+<div id="brand_item_type_field_row" class="row">
+  <div class="col-md-6">
+    <span class="header">The Problem</span> 
+    <p class="explanation_p">
+	<a href="http://stylelend.com">Stylelend.com</a>
+	provides an online market place for women to lease out their clothing.
+	Right now, you must send your clothes into them to have the worth of
+	your clothing evaluated. 
+    </p>
+  </div> <!-- col-md-6  -->
+  <div class="col-md-6">
+    <span class="header">The Solution</span>
+    <p class="explanation_p">
+    This is an app that uses machine learning techniques on the database of inventory to make a prediction of how much you will earn just by entering in a few details on your clothes.
+    </p>
+  </div> <!-- col-md-6  -->
+</div><!-- /.row -->
+<hr class="fancy_hr">
+</div> <!-- / .about_this_site -->
+
 {% endif %}
 {% endblock %}
 
