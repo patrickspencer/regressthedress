@@ -59,7 +59,6 @@ def create_one_hot_row_brand_keyword(unknown_brand, list_of_keywords):
         l[0] = 1
     return l
 
-# main prediction function
 def one_hot_form_input(brand, item_type, title, est_price):
     """
     Returns pandas series
