@@ -11,10 +11,22 @@
 <hr class="fancy_hr">
   <span class="header">Enter in your item's details below</span>
   <p class="explanation_p">
-    Please fill in all inputs. If your brand isn't on the list then
-    choose 'other'
+    Please fill in the Category, Brand, and Retail price for your item
+    below. If your brand isn't on the list then
+    choose 'other'. You don't need to fill in the description but it
+    helps.
   </p>
 <div class="input-form-group">
+{{ form_valid }}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+  <ul>
+  {% for message in messages %}
+      <li>{{ message }} </li>
+  {% endfor %}
+  </ul>
+{% endif %}
+{% endwith %}
   <form method="POST" action="{{ url_for('main.index') }}" class="form-inline">
     <div class="row input_row">
       <div class="col-md-2 control-label">
@@ -30,6 +42,17 @@
       </div>
       <div class="col-md-10">
         {{ form.brand(class_='form-control select_custom') }}
+          {% if request.method == 'POST' %}
+            <span class="form_helper_text">
+            <small>
+              <div class="form_error">
+                {% for error in form.brand.errors %}
+                  {{ error }}
+                {% endfor %}
+              </div>
+            </small>
+            </span>
+          {% endif %}
       </div>
     </div><!-- /.row -->
     <div class="row input_row">
@@ -38,12 +61,19 @@
       </div>
       <div class="col-md-10">
         {{ form.est_price(class_='form-control select_custom') }}
-	  <span class="form_helper_text">
-	      <br>
-	      <small>
-		  (ex: This is the price you would pay if you bought this item or a similar item new.)
-              </small>
-	  </span>
+        <span class="form_helper_text">
+          <br>
+          <small>
+          (ex: This is the price you would pay if you bought this item or a similar item new.)
+          {% if request.method == 'POST' %}
+            <div class="form_error">
+              {% for error in form.est_price.errors %}
+                {{ error }}
+              {% endfor %}
+            </div>
+          {% endif %}
+          </small>
+        </span>
       </div><!-- /.col-md-10 -->
     </div><!-- /.row -->
     <div class="row">
@@ -51,12 +81,19 @@
         <span id="description_label">{{ form.description.label }}</span>
       </div>
       <div id="description_field_row" class="col-md-10">
-          {{ form.description(class_='form-control') }}
-	  <span class="form_helper_text">
+        {{ form.description(class_='form-control') }}
+        <span class="form_helper_text">
 	      <br>
 	      <small>
-		  (ex: BCBG formfitting midi dress with contrasting floral embroidery and lattice trim)
-              </small>
+          (ex: Formfitting midi dress with contrasting floral embroidery and lattice trim)
+          {% if request.method == 'POST' %}
+            <div class="form_error">
+              {% for error in form.description.errors %}
+                {{ error }}
+              {% endfor %}
+            </div>
+          {% endif %}
+        </small>
 	  </span>
       </div><!-- /.col-md-10 -->
     </div><!-- /.row -->
@@ -69,7 +106,7 @@
   </form>
 </div><!-- /.from-group -->
 
-{% if request.method == 'POST' %}
+{% if request.method == 'POST' and form.validate() %}
 <div class="panel panel-success output_panel">
   <div class="panel-heading">Results</div>
     <div class="panel-body">
@@ -86,7 +123,7 @@
     <span class="header">What's this about?</span>
     <p class="explanation_p">
 	This is an independent consulting project for <a
-	href="http://stylelend.com">Stylelend.com</a>. They provides an online
+	href="http://stylelend.com">Stylelend.com</a>. They provide an online
 	market place for women to lease out their clothing to other people. The
 	problem right now is that you must send your clothes into them to have
 	the worth of your clothing evaluated. Who wants to wait that long to

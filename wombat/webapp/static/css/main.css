@@ -87,7 +87,7 @@ input[type="text"], textarea, select {
 
 .top_icon {
   width: 40px; 
-  margin-top: -15px;
+  margin-top: -22px;
   margin-right: 10px;
 }
 
@@ -149,10 +149,19 @@ input[type="submit"] {
 
 #description {
   width: 100%;
+  padding-left: 5px;
 }
 
 #form-directions {
   margin: 0 0 50px 0;
+}
+
+.form_error {
+   color: #f4715d;
+}
+
+a {
+  color: #900C3F;
 }
 
 /*# sourceMappingURL=main.css.map */

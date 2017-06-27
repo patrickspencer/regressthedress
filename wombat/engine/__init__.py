@@ -1,13 +1,10 @@
 import re
 import os
-from sklearn.externals import joblib
-from wombat.engine.main import *
-from wombat.engine.one_hot_funcs import create_one_hot_row_adj
-from wombat.engine.one_hot_funcs import one_hot_form_input
 from wombat.models import engine
-
-reg_model_dir = os.path.dirname(os.path.abspath(__file__))
-reg_model_path = os.path.join(reg_model_dir, 'stat_model_pickles', 'rfr_v0.3_w_adj_prices_better_brands.pkl')
+from wombat.engine.main import *
+from sklearn.externals import joblib
+from wombat.engine.one_hot_funcs import reg_model_path
+from wombat.engine.one_hot_funcs import create_one_hot_row_adj, one_hot_form_input
 
 def predict_price(brand, item_type, title, est_price):
     one_hot_series = one_hot_form_input(brand = brand,
