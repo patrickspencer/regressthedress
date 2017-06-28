@@ -8,7 +8,7 @@ from wombat.engine.one_hot_funcs import one_hot_form_input
 from wombat.engine.one_hot_funcs import reg_model_path
 from sklearn.externals import joblib
 
-main = Blueprint('main', __name__, url_prefix='/')
+main = Blueprint('main', __name__, url_prefix='/', static_folder='static')
 
 @main.route("/", methods=['GET', 'POST'])
 def index():
