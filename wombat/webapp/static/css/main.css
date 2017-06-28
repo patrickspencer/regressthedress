@@ -52,11 +52,16 @@ label:focus,
 
 #title {
   text-align: center;
-  margin: 20px 0 30px 0; }
+  margin: 20px 0 10px 0; }
 
 #links {
   text-align: center;
-  margin: 10px 0 20px 0; }
+  margin: 5px 0 30px 0; 
+}
+
+#links > a {
+  margin: 0 15px 0 15px; 
+}
 
 .form-control {
 font-size: 100%;
@@ -64,7 +69,8 @@ font-size: 90%;
 outline: none;
 -webkit-box-shadow: none !important;
 -moz-box-shadow: none !important;
-box-shadow: none !important; }
+box-shadow: none !important; 
+}
 
 .select_custom {
   padding: 10px;

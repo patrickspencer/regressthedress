@@ -22,6 +22,8 @@ class DescriptionForm(Form):
     est_price = FloatField(label='Retail Price', validators =
     [validators.Required(message="""Please enter a retail price. If you
                 don\'t know the exact price of the item you can estimate
-                it or look for similar priced items""")])
+                it or look for similar priced items"""),
+                validators.NumberRange(min=.00001, message="""Please enter a
+                    positive number for price.""")])
     submit = SubmitField(label='Submit')
 

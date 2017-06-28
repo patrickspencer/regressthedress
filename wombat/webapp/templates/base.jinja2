@@ -20,6 +20,18 @@
     <body>
 
     <div class="container">
+      <div class="row" id="title">
+          <div class="top_title">
+        <img src="{{ url_for('static', filename="img/red_dress.svg") }}" class="top_icon">
+        <span class="title_text">Regress the Dress</span>
+          </div>
+      </div>
+      <div class="row" id="links">
+        <a href="{{ url_for('main.index') }}">App</a> -
+        <a href="{{ url_for('main.about') }}">What's This?</a> -
+        <a href="{{ url_for('main.who') }}">Who made this?</a>
+      </div>
+      <hr class="fancy_hr">
 	    {% block content %}{% endblock %}
     </div> <!-- /.container -->
 

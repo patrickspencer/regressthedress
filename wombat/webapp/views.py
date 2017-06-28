@@ -32,7 +32,10 @@ def index():
 def static_from_root():
     return send_from_directory(main.static_folder, request.path[1:])
 
-@main.route('test/')
-def test():
-    docs = ['1', '2', '3']
-    return render_template('test.jinja2', docs = docs)
+@main.route('about/')
+def about():
+    return render_template('about.jinja2')
+
+@main.route('who/')
+def who():
+    return render_template('who.jinja2')

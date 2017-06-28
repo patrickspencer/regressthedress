@@ -1,0 +1,37 @@
+{% extends "base.jinja2" %}
+
+{% block content %}
+<div class="about_this_site">
+<div id="brand_item_type_field_row" class="row">
+  <div class="col-md-8">
+    <span class="header">Problem</span>
+    <p class="explanation_p">
+    My name is Patrick Spencer and I am a Data Science fellow at <a
+    href="insightdatascience.com">Insight
+    Data Science</a>. I'm interested in using machine learning
+    techniques and analytical thinking to solve real world problems in
+    business.
+    </p>
+    <p class="explanation_p">
+    I graduated from the University of Missouri, Columbia with a Ph.D in
+    Mathematics in 2016. During my graduate studies I used tools from
+    harmonic analysis, functinal analysis, and probability to answer
+    questions in <a
+    href="https://en.wikipedia.org/wiki/Convex_geometry">convex
+    geometry</a>.
+    </p>
+    <p class="explanation_p">
+    explanation_p
+    </p>
+
+  </div> <!-- col-md-  -->
+  <div class="col-md-4">
+    <img src="{{ url_for('static', filename="img/headshot.jpg") }}"
+     class="img-thumbnail"
+    alt="Patrick Spencer" width="90%" />
+  </div> <!-- col-md-4  -->
+</div><!-- /.row -->
+<hr class="fancy_hr">
+</div> <!-- / .about_this_site -->
+
+{% endblock %}
