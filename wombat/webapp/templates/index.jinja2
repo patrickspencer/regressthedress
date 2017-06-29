@@ -100,15 +100,42 @@
 {% endif %}
 
 <hr class="fancy_hr">
-<div id="brand_item_type_field_row" class="row">
-  <div class="col-md-12">
-    <span class="header">What's this about?</span>
+<!-- <div id="brand_item_type_field_row" class="row"> -->
+<!--   <div class="col&#45;md&#45;12"> -->
+<!--     <span class="header">What's this about?</span> -->
+<!--     <p class="explanation_p"> -->
+<!-- 	This is an independent consulting project for <a -->
+<!-- 	href="http://stylelend.com">Stylelend.com</a>. Read more about it <a href="{{ url_for('main.about') }}">here</a>. -->
+<!--     </p> -->
+<!--   </div> <!&#45;&#45; col&#45;md&#45;12  &#45;&#45;> -->
+<!-- </div><!&#45;&#45; /.row &#45;&#45;> -->
+<!-- <hr class="fancy_hr"> -->
+<div class="row">
+  <div class="col-md-6">
+    <span class="header">About</span>
     <p class="explanation_p">
-	This is an independent consulting project for <a
-	href="http://stylelend.com">Stylelend.com</a>. Read more about it <a href="{{ url_for('main.about') }}">here</a>.
+    This is an independent consulting project for <a
+    href="http://stylelend.com">Stylelend.com</a>. They provide an online
+    market place for women to lease out their clothing to other people. The
+    problem right now is that you must send your clothes into them to have
+    the worth of your clothing evaluated. Who wants to wait that long to
+    find out how much your clothing items are worth?
     </p>
-  </div> <!-- col-md-12  -->
+  </div> <!-- col-md-6  -->
+  <div class="col-md-6">
+    <span class="header">The Overview</span>
+    <p class="explanation_p">
+    This is an app that uses machine learning techniques on the database of
+    inventory to make a prediction of how much you will earn just by entering
+    in a few details on your clothes. 
+    </p>
+    
+    <p class="explanation_p">
+    It takes the brand, item type, retail price, and selected adjectives from
+    the description and inputs these into a premade random forest regression
+    model trained on historical inventory data.
+    </p>
+  </div> <!-- col-md-6  -->
 </div><!-- /.row -->
-<hr class="fancy_hr">
 {% endblock %}
 
