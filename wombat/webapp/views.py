@@ -20,10 +20,9 @@ def index():
         brand = request.form['brand']
         item_type = request.form['item_type']
         est_price = request.form['est_price']
-        prediction = Prediction(brand = brand, item_type = item_type, est_price = est_price, title = title)
-        predicted_value = '%.2f'%(prediction.predicted_price)
+        pred = Prediction(brand = brand, item_type = item_type, est_price = est_price, title = title)
     return render_template('index.jinja2',
-            form=form, prediction = prediction)
+            form=form, prediction = pred)
 
 @main.route('robots.txt')
 def static_from_root():
