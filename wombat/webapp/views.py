@@ -1,5 +1,5 @@
 import numpy as np
-from wombat.engine import get_price_dist, Prediction
+from wombat.engine import Prediction
 from wombat.models import dbsession, Item
 from wombat.webapp.forms import DescriptionForm
 from wombat.models import engine, dbsession, Item
@@ -22,7 +22,6 @@ def index():
         est_price = request.form['est_price']
         prediction = Prediction(brand = brand, item_type = item_type, est_price = est_price, title = title)
         predicted_value = '%.2f'%(prediction.predicted_price)
-        price_range = get_price_dist(request.form['brand'], request.form['item_type'])
     return render_template('index.jinja2',
             form=form, prediction = prediction)
 
