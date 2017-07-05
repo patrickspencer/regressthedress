@@ -13,7 +13,7 @@ main = Blueprint('main', __name__, url_prefix='/', static_folder='static')
 @main.route("/", methods=['GET', 'POST'])
 def index():
     form = DescriptionForm(request.form)
-    predicted_value = ''
+    pred = ''
     price_range = None
     if request.method == 'POST' and form.validate():
         title = request.form['description']
@@ -21,8 +21,7 @@ def index():
         item_type = request.form['item_type']
         est_price = request.form['est_price']
         pred = Prediction(brand = brand, item_type = item_type, est_price = est_price, title = title)
-    return render_template('index.jinja2',
-            form=form, prediction = pred)
+    return render_template('index.jinja2', form = form, prediction = pred)
 
 @main.route('robots.txt')
 def static_from_root():
