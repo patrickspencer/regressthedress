@@ -14,7 +14,8 @@ from sklearn.externals import joblib
 from wombat.models import dbsession, engine, ItemAdjective, ItemType
 
 reg_model_dir = os.path.dirname(os.path.abspath(__file__))
-reg_model_path = os.path.join(reg_model_dir, 'stat_model_pickles', 'rfr_v0.7_w_adj_prices_better_brands.pkl')
+reg_model_path = os.path.join(reg_model_dir, 'stat_model_pickles',
+        'rfr_v0.8_w_adj_prices_better_brands.pkl')
 
 def create_one_hot_row_adj(sentence, features_adj):
     """Fuzzy search for words from ajective list in sentence"""
