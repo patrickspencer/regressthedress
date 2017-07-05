@@ -1,5 +1,5 @@
 import numpy as np
-from wombat.engine import predict_price
+from wombat.engine import get_price_dist, Prediction
 from wombat.models import dbsession, Item
 from wombat.webapp.forms import DescriptionForm
 from wombat.models import engine, dbsession, Item
@@ -14,19 +14,17 @@ main = Blueprint('main', __name__, url_prefix='/', static_folder='static')
 def index():
     form = DescriptionForm(request.form)
     predicted_value = ''
+    price_range = None
     if request.method == 'POST' and form.validate():
         title = request.form['description']
         brand = request.form['brand']
         item_type = request.form['item_type']
         est_price = request.form['est_price']
-
-        predicted_value = predict_price(brand = brand,
-            item_type = item_type,
-            title = title,
-            est_price = est_price)
-        predicted_value = '%.2f'%(predicted_value)
+        prediction = Prediction(brand = brand, item_type = item_type, est_price = est_price, title = title)
+        predicted_value = '%.2f'%(prediction.predicted_price)
+        price_range = get_price_dist(request.form['brand'], request.form['item_type'])
     return render_template('index.jinja2',
-            form=form, predicted_value = predicted_value)
+            form=form, prediction = prediction)
 
 @main.route('robots.txt')
 def static_from_root():

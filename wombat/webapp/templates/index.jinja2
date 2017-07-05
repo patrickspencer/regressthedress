@@ -94,7 +94,12 @@
   <div class="panel-heading">Results</div>
     <div class="panel-body">
           Predicted value for item:
-          ${{ predicted_value }} per week
+          ${{ prediction.predicted_price_str }} per week
+	  {% if price_range %}
+	  <br>
+	  In the past, items from '{{ request.form['brand'] }}' in the '{{ request.form['item_type'] }}' category have sold between
+	  ${{ prediction.price_range[0] }} and ${{ prediction.price_range[1] }}.
+	  {% endif %}
     </div>
 </div>
 {% endif %}
