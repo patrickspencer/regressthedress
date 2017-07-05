@@ -65,13 +65,14 @@ def one_hot_form_input(brand, item_type, title, est_price):
     Returns pandas series
     """
     X_sample, _ = joblib.load(reg_model_path)
-    print("x sample column #: {}".format(len(X_sample)))
     one_hot_array = X_sample
     one_hot_array['cost'] = est_price
+
     if brand in one_hot_array.index.values:
         one_hot_array[brand] = 1
     else:
         one_hot_array['other brand'] = 1
+
     if item_type in one_hot_array.index.values:
         one_hot_array[item_type] = 1
     else:
@@ -91,11 +92,3 @@ def one_hot_form_input(brand, item_type, title, est_price):
     # take the exponent because the model was trained on the log of rent values
     # prediction = np.exp(reg.predict(input_df.T)[0])
     return one_hot_array
-
-# used for debugging functions
-# brand = 'Tibi'
-# item_type = 'dresses'
-# title = 'lurex dress'
-# est_price = 300
-# this = one_hot_form_input(brand = brand, item_type = item_type, title = title, est_price=est_price)
-# print(len(this))
