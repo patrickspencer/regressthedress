@@ -1,0 +1,6 @@
+---
+
+- name: Create the Womabt settings file
+  template: src=settings_py.j2
+            dest="{{ project_path }}/wombat/settings.py"
+            backup=yes

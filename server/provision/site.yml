@@ -1,6 +1,6 @@
 ---
 - name: "Provision a {{ project_name }} site"
-  hosts: tag_Name_insight_project
+  hosts: tag_Name_wombat_ansible_test
   gather_facts: False
   remote_user: "{{ project_server_owner }}"
   become: true

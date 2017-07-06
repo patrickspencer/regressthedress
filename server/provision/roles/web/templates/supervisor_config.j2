@@ -1,6 +1,8 @@
 [program:{{ project_name }}]
+# Don't use the gunicorn_start script in server/ that is a backup
+# anible will create a file in {{ project_path }}/gunicorn_start.sh
 command = bash {{ project_path }}/gunicorn_start.sh            ; Command to start app
 user = {{ gunicorn_user }}                                            ; User to run as
-stdout_logfile = {{ log_dir }}/okapi_gunicorn_supervisor.log  ; Where to write log messages
+stdout_logfile = {{ log_dir }}/{{ project_name }}_gunicorn_supervisor.log  ; Where to write log messages
 redirect_stderr = true                                                ; Save stderr in the same log
 environment=LANG=en_US.UTF-8,LC_ALL=en_US.UTF-8                       ; Set UTF-8 as default encoding

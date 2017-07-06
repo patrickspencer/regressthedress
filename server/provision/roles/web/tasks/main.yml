@@ -30,6 +30,9 @@
 # - include: setup_flask_project.yml
 #   tags: django
 
+- include: setup_settings_py.yml
+  tags: settings_py_file
+
 - include: setup_gunicorn.yml
   tags: gunicorn
 

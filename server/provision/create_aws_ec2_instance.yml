@@ -8,7 +8,7 @@
       image: "ami-f4cc1de2"
       group: "simple-group-1"
       region: "us-east-1"
-      instance_tag: "insight_project"
+      instance_tag: "test"
   tasks:
     - name: make one instance
       ec2:

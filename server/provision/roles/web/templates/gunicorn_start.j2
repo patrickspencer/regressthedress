@@ -1,21 +1,19 @@
 #!/bin/bash
 
 NAME="okapi_app"                                 # Name of the application
-PROJECT_DIR={{ project_path }}                   # Project directory
-SOCKFILE={{ project_path }}/okapi_gunicorn.sock  # we will communicate using this unix socket
-LOGFILE={{ gunicorn_log_file }}		         # we will communicte using this unix socket
-USER={{ gunicorn_user }}                         # the user to run as
-GROUP=webapps                                    # the group to run as
+PROJECT_DIR="{{ project_path }}"                   # Project directory
+SOCKFILE="{{ project_path }}/okapi_gunicorn.sock"  # we will communicate using this unix socket
+LOGFILE="{{ gunicorn_log_file }}"		         # we will communicte using this unix socket
+USER="{{ gunicorn_user }}"                         # the user to run as
+GROUP="webapps"                                    # the group to run as
 NUM_WORKERS=3                                    # how many worker processes should Gunicorn spawn
-WSGI_MODULE=config.wsgi                          # WSGI module name
+WSGI_MODULE="config.wsgi"                          # WSGI module name
 
 echo "Starting $NAME as `whoami`"
 
 # Activate the virtual environment
 cd $PROJECT_DIR
 . {{ virtualenv_path }}/bin/activate
-source {{ virtualenv_path }}/bin/postactivate
-export PYTHONPATH=$PROJECT_DIR:$PYTHONPATH
 
 # Create the run directory if it doesn't exist
 RUNDIR=$(dirname $SOCKFILE)

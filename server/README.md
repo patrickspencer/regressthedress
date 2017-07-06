@@ -5,3 +5,4 @@ Restart supervisor
 
 `sudo ln -s /home/ubuntu/okapi/server/nginx.conf /etc/nginx/sites-enabled/okapi`
 
+Copy `server/provision.sql.example` to `server/provision.sql`

@@ -1,0 +1,15 @@
+import os
+
+DATABASE = {
+	'NAME': "{{ db_name }}",
+	'USER': "{{ db_user }}",
+	"PASSWORD": "{{ db_password }}",
+	"HOST": "{{ db_host }}",
+	"PORT": "{{ db_port }}",
+    }
+
+LOCAL_TIMEZONE = 'US/Eastern'
+
+# Don't change this
+DATABASE_URI = 'postgres://%s:%s@%s:%s/%s' % (DATABASE['USER'],
+	DATABASE['PASSWORD'],DATABASE['HOST'],DATABASE['PORT'],DATABASE['NAME'])

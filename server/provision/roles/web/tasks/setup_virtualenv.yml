@@ -8,12 +8,3 @@
 
 - name: Install packages required by the project inside virtualenv
   pip: virtualenv={{ virtualenv_path }} requirements={{ requirements_file }}
-
-- name: Create the virtualenv postactivate script to set environment variables
-  template: src=env_vars.j2
-            dest={{ virtualenv_path }}/bin/postactivate
-            owner={{ gunicorn_user }}
-            group={{ gunicorn_group }}
-            mode=0640
-            backup=yes
-  tags: deploy

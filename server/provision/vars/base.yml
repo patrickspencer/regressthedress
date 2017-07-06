@@ -2,7 +2,6 @@
 project_name: "wombat"
 project_server_owner: "ubuntu"
 project_server_group: "webapp"
-git_repo: "https://bitbucket.org/patrickspencer/stylelend_wombat"
 system_packages:
   - git
   - nginx
@@ -20,7 +19,7 @@ system_packages:
 # db
 db_user: "patrick"
 db_name: "stylelend"
-db_password: "TeddyBoxingKangaroo1901"
+db_password: "pass"
 db_host: localhost
 db_port: 5432
 
@@ -30,6 +29,7 @@ virtualenv_python_version: python3
 # Project settings.
 project_parent_dir: /home/ubuntu
 project_path: "{{ project_parent_dir }}/{{ project_name }}"
+webapp_path: "{{ project_path }}/{{ project_name }}/webapp"
 virtualenv_path: "{{ project_path }}/.virtualenvs/{{ project_name }}"
 log_dir: "{{ project_path }}/{{ project_name }}_logs"
 supervisor_log_file: "{{ log_dir }}/gunicorn_supervisor.log"
@@ -44,16 +44,16 @@ gunicorn_sock_file: "{{ project_path }}/{{ project_name }}_gunicorn.sock"
 # Nginx settings.
 nginx_access_log_file: "{{ log_dir }}/nginx_access.log"
 nginx_error_log_file: "{{ log_dir }}/nginx_error.log"
-nginx_static_dir: "{{ project_path }}/server_static_files"
+nginx_static_dir: "{{ webapp_path }}/static/"
 nginx_media_dir: "{{ project_path }}/media/"
 nginx_server_name: "{{ inventory_hostname }}"
 
-# Django environment variables.
-flask_environment:
-  MEDIA_ROOT: "{{ nginx_media_dir }}"
-  STATIC_ROOT: "{{ nginx_static_dir }}"
-  DATABASE_NAME: "{{ db_name }}"
-  DATABASE_USER: "{{ db_user }}"
-  DATABASE_PASSWORD: "{{ db_password }}"
-  DATABASE_HOST: "{{ db_host }}"
-  DATABASE_PORT: "{{ db_port }}"
+# # Flask environment variables.
+# flask_environment:
+#   MEDIA_ROOT: "{{ nginx_media_dir }}"
+#   STATIC_ROOT: "{{ nginx_static_dir }}"
+#   DATABASE_NAME: "{{ db_name }}"
+#   DATABASE_USER: "{{ db_user }}"
+#   DATABASE_PASSWORD: "{{ db_password }}"
+#   DATABASE_HOST: "{{ db_host }}"
+#   DATABASE_PORT: "{{ db_port }}"
