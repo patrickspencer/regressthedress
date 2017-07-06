@@ -1,6 +1,12 @@
 # About
 
-Project Wombat (i.e. Regress The Dress) is a python app for Style Lend anayltics. Stylelend is an online company that helps women lend their clothes to others. The current problem is that a user must first send their items into Stylelend.com in order to find out how much their item is worth. This application is a price prediction application that Stylelend users can use to find out how much their items are worth just by entering in a few details about the item.
+Project Wombat (i.e. Regress The Dress) is a python app for Style Lend
+anayltics. Stylelend is an online company that helps women lend their
+clothes to others. The current problem is that a user must first send
+their items into Stylelend.com in order to find out how much their item
+is worth. This application is a price prediction application that
+Stylelend users can use to find out how much their items are worth just
+by entering in a few details about the item.
 
 # Instructions for ansible server setup
 
